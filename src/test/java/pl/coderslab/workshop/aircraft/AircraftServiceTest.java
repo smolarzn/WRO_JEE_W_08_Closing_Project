@@ -13,7 +13,7 @@ public class AircraftServiceTest {
     public AircraftService service;
 
     @Test
-    public void should() {
+    public void shouldNotSaveAircraft() {
         //given
         Aircraft aircraft = new Aircraft();
         Aircraft aircraftMock = new Aircraft();

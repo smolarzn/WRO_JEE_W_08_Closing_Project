@@ -8,7 +8,7 @@ public class AircraftService {
     private final AircraftRepository repository;
 
     public Aircraft save(Aircraft aircraft) {
-        return aircraft;
+        return repository.save(aircraft);
     }
 
 
