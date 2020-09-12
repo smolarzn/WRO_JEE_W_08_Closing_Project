@@ -1,35 +1,60 @@
 package pl.coderslab.workshop.model;
 
 import lombok.*;
-
+import pl.coderslab.workshop.model.aircraftProperties.*;
 import javax.persistence.*;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "aircrafts")
+@Table(name = "aircraft")
 public class Aircraft {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Size(min = 2, max = 50)
+    @NotNull
     private String name;
-    @Column(nullable = false)
+    @Size(min = 2, max = 50)
+    @NotNull
+    private String manufacturer;
+    @Enumerated(value = EnumType.STRING)
     private Assignment assignment;
-    private String role;
-    private String nationalOrigin;
-    @Min(1)
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+    @Enumerated(value = EnumType.STRING)
+    private Body body;
+    @Enumerated(value = EnumType.STRING)
+    private WakeTurbulenceCategory wakeTurbulenceCategory;
+    @Enumerated(value = EnumType.STRING)
+    private Wings wings;
+    @Enumerated(value = EnumType.STRING)
+    private WingsPosition wingsPosition;
+    @Enumerated(value = EnumType.STRING)
+    private Tail tail;
+    @Positive
     private Integer numberOfEngines;
-    private String typeOfEngines;
+    @Enumerated(value = EnumType.STRING)
+    private EnginesType enginesType;
     private String enginesLocation;
-    @Min(value = 1)
+    @Positive
     private Integer crew;
+    @Positive
     private Integer passengers;
-    private String maxSpeed;
-    private String rangeOfAircraft;
-    private String ceiling;
-    private String rateOfClimb;
+    @Positive
+    private Integer maxSpeed;
+    @Positive
+    private Integer rangeOfAircraft;
+    @Positive
+    private Integer ceiling;
+    @Positive
+    private Integer rateOfClimb;
+//    @Column
+//    @Lob
+//    private byte[] file;
 
 }

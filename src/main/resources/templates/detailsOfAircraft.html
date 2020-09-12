@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+</head>
+<body>
+<table th:object="${aircraft}">
+    <tr>
+        <td>Name:</td>
+        <td><span th:text="*{name}" /></td>
+    </tr>
+    <tr>
+        <td>Manufacturer:</td>
+        <td><span type="text" th:text="*{manufacturer}" /></td>
+    </tr>
+    <tr>
+        <td>Assignment:</td>
+        <td><span type="text" th:text="*{assignment}" /></td>
+    </tr>
+    <tr>
+        <td>Role:</td>
+        <td><span type="text" th:text="*{role}" /></td>
+    </tr>
+    <tr>
+        <td>Body:</td>
+        <td><span type="text" th:text="*{body}" /></td>
+    </tr>
+    <tr>
+        <td>Wake turbulence category:</td>
+        <td><span type="text" th:text="*{wakeTurbulenceCategory}" /></td>
+    </tr>
+    <tr>
+        <td>Wings:</td>
+        <td><span type="text" th:text="*{wings}" /></td>
+    </tr>
+    <tr>
+        <td>Wings position:</td>
+        <td><span type="text" th:text="*{wingsPosition}" /></td>
+    </tr>
+    <tr>
+        <td>Tail:</td>
+        <td><span type="text" th:text="*{tail}" /></td>
+    </tr>
+
+    <tr>
+        <td>Number of engines:</td>
+        <td><span type="number" th:text="*{numberOfEngines}" /></td>
+    </tr>
+    <tr>
+        <td>Type of engines:</td>
+        <td><span type="text" th:text="*{enginesType}" /></td>
+    </tr>
+    <tr>
+        <td>Engines location:</td>
+        <td><span type="text" th:text="*{enginesLocation}" /></td>
+    </tr>
+    <tr>
+        <td>Crew:</td>
+        <td><span type="number" th:text="*{crew}" /></td>
+    </tr>
+    <tr>
+        <td>Passengers:</td>
+        <td><span type="number" th:text="*{passengers}" /></td>
+    </tr>
+    <tr>
+        <td>Max speed:</td>
+        <td><span type="number" th:text="*{maxSpeed}" /></td>
+    </tr>
+    <tr>
+        <td>Range:</td>
+        <td><span type="number" th:text="*{rangeOfAircraft}" /></td>
+    </tr>
+    <tr>
+        <td>Ceiling:</td>
+        <td><span type="number" th:text="*{ceiling}" /></td>
+    </tr>
+    <tr>
+        <td>Rate of climb:</td>
+        <td><span type="number" th:text="*{rateOfClimb}" /></td>
+    </tr>
+    <tr>
+        <td>Action:</td>
+        <td><a th:href="@{/aircraft/edit(id=${aircraft.id})}"><button>Edytuj</button></a></td>
+        <td><a th:href="@{/aircraft/delete(id=${aircraft.id})}"><button>Usuń</button></a></td>
+        <td><a th:href="@{/aircraft/list}"><button>Wróć do listy</button></a></td>
+    </tr>
+</table>
+
+</body>
+</html>
