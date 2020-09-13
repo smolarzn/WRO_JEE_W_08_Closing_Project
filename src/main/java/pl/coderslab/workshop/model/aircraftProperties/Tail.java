@@ -1,17 +1,17 @@
 package pl.coderslab.workshop.model.aircraftProperties;
 
 public enum Tail {
-    conventional,
-    T_tail,
-    cruciform_tail,
-    dual_tail,
-    triple_tail,
-    V_tail,
-    inverted_V_tail,
-    inverted_Y_tail,
-    twin_tail,
-    boom_tail,
-    high_boom_tail,
-    multiple_plane_tail,
+    CONVENTIONAL,
+    T_TAIL,
+    CRUCIFORM_TAIL,
+    DUAL_TAIL,
+    TRIPLE_TAIL,
+    V_TAIL,
+    INVERTED_V_TAIL,
+    INVERTED_Y_TAIL,
+    TWIN_TAIL,
+    BOOM_TAIL,
+    HIGH_BOOM_TAIL,
+    MULTIPLE_PLANE_TAIL,
 
 }

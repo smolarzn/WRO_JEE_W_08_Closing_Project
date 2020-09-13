@@ -73,11 +73,18 @@
     </tr>
     <tr>
         <td>Ceiling:</td>
-        <td><span type="number" th:text="*{ceiling}" /></td>
+        <td><span type="number" th:text="*{ceiling}"></span></td>
     </tr>
     <tr>
         <td>Rate of climb:</td>
-        <td><span type="number" th:text="*{rateOfClimb}" /></td>
+        <td><span type="number" th:text="*{rateOfClimb}"></span></td>
+    </tr>
+    <tr>
+        <td>Image:</td>
+        <td><img height="600" width="600" alt="sample" th:src="*{'data:image/png;base64,'+image}" /></td>
+<!--        <td><img height="200" width="300" th:src="@{/images/B747_400.jpg}"></td>-->
+
+
     </tr>
     <tr>
         <td>Action:</td>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add image</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/addImage}" th:object="${aircraft}">
+    <table>
+        <tr>
+            <td>Dodaj zdjęcie do <span th:text="${aircraft.name}"></span> </td>
+            <td><input type="file" th:name="file"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Dodaj"/></td>
+        </tr>
+    </table>
+</form>
+
+
+</body>
+</html>

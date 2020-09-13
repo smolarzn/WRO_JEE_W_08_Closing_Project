@@ -53,8 +53,8 @@ public class Aircraft {
     private Integer ceiling;
     @Positive
     private Integer rateOfClimb;
-//    @Column
-//    @Lob
-//    private byte[] file;
+    @Column
+    @Lob
+    private byte[] file;
 
 }
