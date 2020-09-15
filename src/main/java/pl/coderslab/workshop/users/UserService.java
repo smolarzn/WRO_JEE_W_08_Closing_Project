@@ -1,13 +1,10 @@
 package pl.coderslab.workshop.users;
 
-import lombok.AllArgsConstructor;
 import pl.coderslab.workshop.model.User;
 
-@AllArgsConstructor
-public class UserService {
-    private UserRepository repository;
+public interface UserService {
 
-    public User save(User user) {
-        return repository.save(user);
-    }
+    User findByFirstName(String name);
+
+    void saveUser(User user);
 }
