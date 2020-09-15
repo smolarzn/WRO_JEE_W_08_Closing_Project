@@ -25,7 +25,7 @@ public class Aircraft {
     @Enumerated(value = EnumType.STRING)
     private Assignment assignment;
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private AircraftRole aircraftRole;
     @Enumerated(value = EnumType.STRING)
     private Body body;
     @Enumerated(value = EnumType.STRING)

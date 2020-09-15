@@ -5,10 +5,10 @@
     <title>Add image</title>
 </head>
 <body>
-<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/addImage}" th:object="${aircraft}">
+<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/addImage/{id}(id=${aircraft.id})}"  >
     <table>
         <tr>
-            <td>Dodaj zdjęcie do <span th:text="${aircraft.name}"></span> </td>
+            <td>Dodaj/Zmień zdjęcie: </span> </td>
             <td><input type="file" th:name="file"/></td>
         </tr>
         <tr>
@@ -16,6 +16,7 @@
             <td><input type="submit" value="Dodaj"/></td>
         </tr>
     </table>
+    <a th:href="@{/aircraft/list}"><button>Anuluj</button></a>
 </form>
 
 

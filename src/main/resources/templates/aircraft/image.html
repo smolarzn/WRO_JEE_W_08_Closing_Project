@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table>
+        <div>
+            <tr>
+                <td><strong th:text="${aircraft}"></strong></td>
+            </tr>
+        </div>
+        <div>
+            <tr>
+                <td><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/></td>
+            </tr>
+        </div>
+    </table>
+</div>
+<div>
+    <a th:href="@{/aircraft/details(id=${id})}">
+        <button>Wróć do szczegółów</button>
+    </a>
+</div>
+</body>
+</html>

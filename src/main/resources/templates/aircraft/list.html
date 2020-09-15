@@ -5,28 +5,34 @@
     <title>List of aircraft</title>
 </head>
 <body>
-<a th:href="@{/aircraft/add}">
-    <button>Add aircraft</button>
-</a>
+<div>
+    <a th:href="@{/aircraft/add}">
+        <button>Add aircraft</button>
+    </a>
+</div>
 <div>
     <table>
         <thead>
-        <tr>
-            <th> Name</th>
-            <th> Manufacturer</th>
-            <th> Action</th>
-        </tr>
+        <div>
+            <tr>
+                <th> Name</th>
+                <th> Manufacturer</th>
+                <th> Action</th>
+            </tr>
+        </div>
         </thead>
         <tbody>
-        <tr th:each="air : ${aircraft}">
-            <td><span th:text="${air.name}"></span></td>
-            <td><span th:text="${air.manufacturer}"></span></td>
-            <td>
-                <a th:href="@{/aircraft/details(id=${air.id})}">
-                <button>Details</button>
-                </a>
-            </td>
-        </tr>
+        <div>
+            <tr th:each="air : ${aircraft}">
+                <td><span th:text="${air.name}"></span></td>
+                <td><span th:text="${air.manufacturer}"></span></td>
+                <td>
+                    <a th:href="@{/aircraft/details(id=${air.id})}">
+                        <button>Details</button>
+                    </a>
+                </td>
+            </tr>
+        </div>
         </tbody>
     </table>
 </div>

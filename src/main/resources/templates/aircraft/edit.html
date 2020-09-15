@@ -5,105 +5,175 @@
     <title>Edit aircraft</title>
 </head>
 <body>
-<a th:href="@{/aircraft/details(id=${aircraft.id})}"><button>Back to details without editing</button></a>
+<div>
+    <a th:href="@{/aircraft/details(id=${aircraft.id})}">
+        <button>Wróć do szczegółów</button>
+    </a>
+</div>
 
 <form action="#" th:action="@{/aircraft/edit}" th:object="${aircraft}" method="post">
-    <table>
-        <input type="hidden" th:field="*{id}">
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Manufacturer:</td>
-            <td><input type="text" th:field="*{manufacturer}" /></td>
-            <td th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Manufacturer Error</td>
-        </tr>
-        <tr>
-            <td>Assignment:</td>
-            <td><input type="text" th:field="*{assignment}" /></td>
-            <td th:if="${#fields.hasErrors('assignment')}" th:errors="*{assignment}">Assignment Error</td>
-        </tr>
-        <tr>
-            <td>Role:</td>
-            <td><input type="text" th:field="*{role}" /></td>
-            <td th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</td>
-        </tr>
-        <tr>
-            <td>Body:</td>
-            <td><input type="text" th:field="*{body}" /></td>
-            <td th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Body Error</td>
-        </tr>
-        <tr>
-            <td>Wake turbulence category:</td>
-            <td><input type="text" th:field="*{wakeTurbulenceCategory}" /></td>
-            <td th:if="${#fields.hasErrors('wakeTurbulenceCategory')}" th:errors="*{wakeTurbulenceCategory}">Wake turbulence category Error</td>
-        </tr>
-        <tr>
-            <td>Wings:</td>
-            <td><input type="text" th:field="*{wings}" /></td>
-            <td th:if="${#fields.hasErrors('wings')}" th:errors="*{wings}">Wings Error</td>
-        </tr>
-        <tr>
-            <td>Wings position:</td>
-            <td><input type="text" th:field="*{wingsPosition}" /></td>
-            <td th:if="${#fields.hasErrors('wingsPosition')}" th:errors="*{wingsPosition}">Wings position Error</td>
-        </tr>
-        <tr>
-            <td>Tail:</td>
-            <td><input type="text" th:field="*{tail}" /></td>
-            <td th:if="${#fields.hasErrors('tail')}" th:errors="*{tail}">Tail Error</td>
-        </tr>
-        <tr>
-            <td>Number of engines:</td>
-            <td><input type="number" th:field="*{numberOfEngines}" /></td>
-            <td th:if="${#fields.hasErrors('numberOfEngines')}" th:errors="*{numberOfEngines}">Number of engines Error</td>
-        </tr>
-        <tr>
-            <td>Type of engines:</td>
-            <td><input type="text" th:field="*{enginesType}" /></td>
-            <td th:if="${#fields.hasErrors('enginesType')}" th:errors="*{enginesType}">Type of engines Error</td>
-        </tr>
-        <tr>
-            <td>Engines location:</td>
-            <td><input type="text" th:field="*{enginesLocation}" /></td>
-            <td th:if="${#fields.hasErrors('enginesLocation')}" th:errors="*{enginesLocation}">Engines Location Error</td>
-        </tr>
-        <tr>
-            <td>Crew:</td>
-            <td><input type="number" th:field="*{crew}" /></td>
-            <td th:if="${#fields.hasErrors('crew')}" th:errors="*{crew}">Crew Error</td>
-        </tr>
-        <tr>
-            <td>Passengers:</td>
-            <td><input type="number" th:field="*{passengers}" /></td>
-            <td th:if="${#fields.hasErrors('passengers')}" th:errors="*{passengers}">Passengers Error</td>
-        </tr>
-        <tr>
-            <td>Max speed:</td>
-            <td><input type="number" th:field="*{maxSpeed}" /></td>
-            <td th:if="${#fields.hasErrors('maxSpeed')}" th:errors="*{maxSpeed}">Max speed Error</td>
-        </tr>
-        <tr>
-            <td>Range:</td>
-            <td><input type="number" th:field="*{rangeOfAircraft}" /></td>
-            <td th:if="${#fields.hasErrors('rangeOfAircraft')}" th:errors="*{rangeOfAircraft}">Range Error</td>
-        </tr>
-        <tr>
-            <td>Ceiling:</td>
-            <td><input type="number" th:field="*{ceiling}" /></td>
-            <td th:if="${#fields.hasErrors('ceiling')}" th:errors="*{ceiling}">Ceiling Error</td>
-        </tr>
-        <tr>
-            <td>Rate of climb:</td>
-            <td><input type="number" th:field="*{rateOfClimb}" /></td>
-            <td th:if="${#fields.hasErrors('rateOfClimb')}" th:errors="*{rateOfClimb}">Rate of climb Error</td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-    </table>
+    <div>
+        <table>
+            <input type="hidden" th:field="*{id}">
+            <div>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}"/></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Manufacturer:</td>
+                    <td><input type="text" th:field="*{manufacturer}"/></td>
+                    <td th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Manufacturer Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Assignment:</td>
+                    <td th:each="assignment : ${assignment}">
+                        <input type="radio" th:field="*{assignment}" th:value="${assignment}">
+                        <span th:text="${assignment}">assignment</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Role:</td>
+                    <td>
+                        <div th:each="role : ${aircraftRole}">
+                            <input type="radio" th:field="*{aircraftRole}" th:value="${role}">
+                            <span th:text="${role}">aircraftRole</span>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Body:</td>
+                    <td th:each="body : ${body}">
+                        <input type="radio" th:field="*{body}" th:value="${body}"/>
+                        <span th:text="${body}">body</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Wake turbulence category:</td>
+                    <td th:each="wtc : ${WTC}">
+                        <input type="radio" th:field="*{wakeTurbulenceCategory}" th:value="${wtc}"/>
+                        <span th:text="${wtc}">wake turbulence category</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Wings:</td>
+                    <td th:each="wings : ${wings}">
+                        <input type="radio" th:field="*{wings}" th:value="${wings}"/>
+                        <span th:text="${wings}">wings</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Wings position:</td>
+                    <td th:each="position : ${wingsPosition}">
+                        <input type="radio" th:field="*{wingsPosition}" th:value="${position}"/>
+                        <span th:text="${position}">wings position</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Tail:</td>
+                    <td>
+                        <div th:each="tail : ${tail}">
+                            <input type="radio" th:field="*{tail}" th:value="${tail}">
+                            <span th:text="${tail}">aircraftRole</span>
+                        </div>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Number of engines:</td>
+                    <td><input type="number" th:field="*{numberOfEngines}"/></td>
+                    <td th:if="${#fields.hasErrors('numberOfEngines')}" th:errors="*{numberOfEngines}">Number of engines
+                        Error
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Type of engines:</td>
+                    <td th:each="type : ${enginesType}">
+                        <input type="radio" th:field="*{enginesType}" th:value="${type}"/>
+                        <span th:text="${type}">engines type</span>
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Engines location:</td>
+                    <td><input type="text" th:field="*{enginesLocation}"/></td>
+                    <td th:if="${#fields.hasErrors('enginesLocation')}" th:errors="*{enginesLocation}">Engines Location
+                        Error
+                    </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Crew:</td>
+                    <td><input type="number" th:field="*{crew}"/></td>
+                    <td th:if="${#fields.hasErrors('crew')}" th:errors="*{crew}">Crew Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Passengers:</td>
+                    <td><input type="number" th:field="*{passengers}"/></td>
+                    <td th:if="${#fields.hasErrors('passengers')}" th:errors="*{passengers}">Passengers Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Max speed <strong>[km/h]</strong>:</td>
+                    <td><input type="number" th:field="*{maxSpeed}"/></td>
+                    <td th:if="${#fields.hasErrors('maxSpeed')}" th:errors="*{maxSpeed}">Max speed Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Range <strong>[km]</strong>:</td>
+                    <td><input type="number" th:field="*{rangeOfAircraft}"/></td>
+                    <td th:if="${#fields.hasErrors('rangeOfAircraft')}" th:errors="*{rangeOfAircraft}">Range Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Ceiling <strong>[m]</strong>:</td>
+                    <td><input type="number" th:field="*{ceiling}"/></td>
+                    <td th:if="${#fields.hasErrors('ceiling')}" th:errors="*{ceiling}">Ceiling Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>Rate of climb <strong>[ft/m]</strong>:</td>
+                    <td><input type="number" th:field="*{rateOfClimb}"/></td>
+                    <td th:if="${#fields.hasErrors('rateOfClimb')}" th:errors="*{rateOfClimb}">Rate of climb Error</td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>
+                        <button type="submit">Edytuj</button>
+                    </td>
+                </tr>
+            </div>
+        </table>
+    </div>
 </form>
 
 </body>

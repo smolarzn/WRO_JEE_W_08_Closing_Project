@@ -1,6 +1,6 @@
 package pl.coderslab.workshop.model.aircraftProperties;
 
-public enum Role {
+public enum AircraftRole {
     FIGHTER,
     BOMBER,
     ATTACK,

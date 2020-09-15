@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.workshop.model.Aircraft;
+import pl.coderslab.workshop.model.aircraftProperties.*;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
@@ -20,6 +22,40 @@ public class AircraftController {
 
     private final AircraftRepository aircraftRepository;
 
+    @ModelAttribute(name = "assignment")
+    public List<Assignment> assignments() {
+        return Arrays.asList(Assignment.values());
+    }
+
+    @ModelAttribute(name = "body")
+    public List<Body> bodyList() {
+        return Arrays.asList(Body.values());
+    }
+    @ModelAttribute(name = "enginesType")
+    public List<EnginesType> enginesTypeList() {
+        return Arrays.asList(EnginesType.values());
+    }
+    @ModelAttribute(name = "tail")
+    public List<Tail> tailList() {
+        return Arrays.asList(Tail.values());
+    }
+    @ModelAttribute(name = "WTC")
+    public List<WakeTurbulenceCategory> wakeTurbulenceCategoryList() {
+        return Arrays.asList(WakeTurbulenceCategory.values());
+    }
+    @ModelAttribute(name = "wings")
+    public List<Wings> wingsList() {
+        return Arrays.asList(Wings.values());
+    }
+    @ModelAttribute(name = "wingsPosition")
+    public List<WingsPosition> wingsPositionList() {
+        return Arrays.asList(WingsPosition.values());
+    }
+    @ModelAttribute(name = "aircraftRole")
+    public List<AircraftRole> aircraftRoleList() {
+        return Arrays.asList(AircraftRole.values());
+    }
+
     @GetMapping("/list")
     public String aircraftList(Model model) {
         model.addAttribute("aircraft", aircraftRepository.findAll());
@@ -30,13 +66,21 @@ public class AircraftController {
     public String detailsOfAircraft(@RequestParam Long id, Model model) {
         Aircraft aircraft = aircraftRepository.findById(id).get();
         model.addAttribute("aircraft", aircraft);
+        return "aircraft/details";
+    }
+
+    @GetMapping("/image")
+    public String aircraftImage(@RequestParam Long id, Model model) {
+        Aircraft aircraft = aircraftRepository.findById(id).get();
+        model.addAttribute("aircraft", aircraft.getName());
+        model.addAttribute("id", aircraft.getId());
         byte[] file = aircraft.getFile();
         String image = "";
         if (file != null && file.length > 0) {
             image = Base64.getMimeEncoder().encodeToString(file);
         }
         model.addAttribute("image", image);
-        return "aircraft/details";
+        return "aircraft/image";
     }
 
     @GetMapping("/add")
@@ -55,8 +99,9 @@ public class AircraftController {
         return "aircraft/addImage";
     }
 
-    @PostMapping("/addImage")
-    public String adImage(@RequestParam("file") MultipartFile file, Aircraft aircraft) {
+    @PostMapping("/addImage/{id}")
+    public String adImage(@RequestParam("file") MultipartFile file, @PathVariable("id") Long id) {
+        Aircraft aircraft = aircraftRepository.findById(id).get();
         try {
             aircraft.setFile(file.getBytes());
         } catch (IOException e) {
@@ -68,10 +113,8 @@ public class AircraftController {
 
     @GetMapping("/edit")
     public String editAircraft(@RequestParam Long id, Model model) {
-        Optional<Aircraft> aircraft = aircraftRepository.findById(id);
-        if (aircraft.isPresent()) {
-            model.addAttribute("aircraft", aircraft.get());
-        }
+        Aircraft aircraft = aircraftRepository.findById(id).get();
+        model.addAttribute("aircraft", aircraft);
         return "aircraft/edit";
     }
 
@@ -81,7 +124,7 @@ public class AircraftController {
             return "aircraft/edit";
         }
         aircraftRepository.save(aircraft);
-        return "redirect:/aircraft/list";
+        return "aircraft/addImage";
     }
 
     @GetMapping("/delete")
