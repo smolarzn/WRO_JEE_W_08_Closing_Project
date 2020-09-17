@@ -32,4 +32,8 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email)!=null;
+    }
 }

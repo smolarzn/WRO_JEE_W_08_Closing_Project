@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
     <title>Delete aircraft</title>
 </head>
 <body>
@@ -19,5 +21,7 @@
         <button>Do not delete</button>
     </a>
 </div>
+<div th:include="/fragments::footer"></div>
+
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
     <title>List of aircraft</title>
 </head>
 <body>
-<div>
+<div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/aircraft/add}">
         <button>Add aircraft</button>
     </a>
@@ -36,5 +38,7 @@
         </tbody>
     </table>
 </div>
+<div th:include="/fragments::footer"></div>
+
 </body>
 </html>

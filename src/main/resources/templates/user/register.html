@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <title>Register</title>
 </head>
 <body>
@@ -17,18 +18,22 @@
     <div>
         <input type="text" th:field="*{email}" placeholder="Email">
         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        <p th:text="${emailError}"></p>
+
     </div>
     <div>
         <input type="password" th:field="*{password}" placeholder="Hasło">
         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     </div>
     <div>
-        <input type="password" name="repassword" placeholder="Powtórz hasło">
+        <input type="password" name="repass" placeholder="Powtórz hasło">
+        <p th:text="${passError}"></p>
     </div>
     <div>
             <input type="submit" value="submit">
     </div>
 </form>
+<div th:include="/fragments::footer"></div>
 
 </body>
 </html>

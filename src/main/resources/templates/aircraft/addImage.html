@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
     <title>Add image</title>
 </head>
 <body>
@@ -19,6 +21,7 @@
     <a th:href="@{/aircraft/list}"><button>Anuluj</button></a>
 </form>
 
+<div th:include="/fragments::footer"></div>
 
 </body>
 </html>

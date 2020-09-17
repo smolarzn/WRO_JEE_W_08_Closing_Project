@@ -6,4 +6,6 @@ import pl.coderslab.workshop.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByFirstName(String firstname);
+
+    User findByEmail(String email);
 }

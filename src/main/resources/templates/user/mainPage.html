@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <title>Main Page</title>
+</head>
+<body>
+<div th:include="/fragments::header"></div>
+<a th:href="@{/aircraft/list}"><button>Zobacz nasze statki powietrzne</button></a>
+<a th:href="@{/quiz}"><button>Zagraj w quiz</button></a>
+<div th:include="/fragments::footer"></div>
+</body>
+</html>

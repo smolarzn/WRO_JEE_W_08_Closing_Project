@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link name="f" rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <title>Quiz</title>
+</head>
+<body>
+<div>
+        <strong th:text="${aircraft}"></strong>
+</div>
+<div class="image">
+        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
+</div>
+<!--<div th:each="role : ${aircraftRole}">-->
+<!--    <input type="radio" th:field="*{aircraftRole}" th:value="${role}">-->
+<!--    <span th:text="${role}">aircraftRole</span>-->
+<!--</div>-->
+<div th:include="/fragments :: footer"></div>
+</body>
+</html>

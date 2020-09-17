@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
     <title>Details</title>
 </head>
 <body>
@@ -126,16 +129,20 @@
         <div>
             <tr>
                 <td>Action:</td>
+                <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/edit(id=${aircraft.id})}">
                         <button>Edytuj</button>
                     </a>
                 </td>
+                </div>
+                <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/delete(id=${aircraft.id})}">
                         <button>Usuń</button>
                     </a>
                 </td>
+                </div>
                 <td>
                     <a th:href="@{/aircraft/list}">
                         <button>Wróć do listy</button>
@@ -145,6 +152,7 @@
         </div>
     </table>
 </div>
+<div th:include="/fragments::footer"></div>
 
 </body>
 </html>

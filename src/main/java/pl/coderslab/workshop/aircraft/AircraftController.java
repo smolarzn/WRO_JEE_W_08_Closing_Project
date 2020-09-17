@@ -1,6 +1,5 @@
 package pl.coderslab.workshop.aircraft;
 
-import org.springframework.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
