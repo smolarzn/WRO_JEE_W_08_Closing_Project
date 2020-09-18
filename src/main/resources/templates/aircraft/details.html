@@ -131,14 +131,14 @@
                 <td>Action:</td>
                 <div sec:authorize="hasRole('ADMIN')">
                 <td>
-                    <a th:href="@{/aircraft/edit(id=${aircraft.id})}">
+                    <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">
                         <button>Edytuj</button>
                     </a>
                 </td>
                 </div>
                 <div sec:authorize="hasRole('ADMIN')">
                 <td>
-                    <a th:href="@{/aircraft/delete(id=${aircraft.id})}">
+                    <a th:href="@{/aircraft/admin/delete(id=${aircraft.id})}">
                         <button>Usuń</button>
                     </a>
                 </td>

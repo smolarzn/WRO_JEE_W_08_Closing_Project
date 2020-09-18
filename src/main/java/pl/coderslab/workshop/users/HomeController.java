@@ -8,9 +8,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.workshop.aircraft.AircraftRepository;
+import pl.coderslab.workshop.model.Aircraft;
 import pl.coderslab.workshop.model.User;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,9 +22,12 @@ import javax.validation.Valid;
 public class HomeController {
 
     private final UserServiceImpl userService;
+    private final AircraftRepository aircraftRepository;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        Aircraft random = aircraftRepository.findRandom();
+        model.addAttribute("image", userService.image(random.getFile()));
         return "home";
     }
 
@@ -33,15 +40,9 @@ public class HomeController {
     public String logoutForm() {
         return "user/logout";
     }
-//
-//    @PostMapping("/logout")
-//    public String logout() {
-//        return "redirect:/";
-//    }
 
     @GetMapping("/register")
     public String registerForm(Model model) {
-
         model.addAttribute("user", new User());
         return "user/register";
     }

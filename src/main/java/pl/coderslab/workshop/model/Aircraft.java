@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -56,5 +57,18 @@ public class Aircraft {
     @Column
     @Lob
     private byte[] file;
+    private LocalDate created;
+    private LocalDate updated;
+
+    @PrePersist
+    public void prePersist() {
+        created = LocalDate.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        updated = LocalDate.now();
+    }
+
+
 
 }

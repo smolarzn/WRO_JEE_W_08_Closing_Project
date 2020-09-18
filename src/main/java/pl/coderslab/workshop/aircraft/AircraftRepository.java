@@ -17,5 +17,7 @@ public interface AircraftRepository extends JpaRepository<Aircraft, Long> {
     @Query(value = "select * from project.aircraft order by rand() limit 1", nativeQuery = true)
     Aircraft findRandom();
 
+    @Query(value = "select * from project.aircraft order by created desc limit 3", nativeQuery = true)
+    List<Aircraft> lastAdded();
 
 }

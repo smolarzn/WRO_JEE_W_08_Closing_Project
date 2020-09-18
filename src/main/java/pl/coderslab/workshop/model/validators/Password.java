@@ -1,6 +1,5 @@
-package pl.coderslab.workshop.model.aircraftProperties;
+package pl.coderslab.workshop.model.validators;
 
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;
@@ -12,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
-    String message() default "{password.error.message}";
+    String message() default "{validation.Password.message}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

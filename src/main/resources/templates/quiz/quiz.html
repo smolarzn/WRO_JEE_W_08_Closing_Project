@@ -6,8 +6,9 @@
     <title>Quiz</title>
 </head>
 <body>
+<div th:include="/fragments::userHeader"></div>
 <div>
-        <strong th:text="${aircraft}"></strong>
+        <strong class="center" th:text="${aircraft}"></strong>
 </div>
 <div class="image">
         <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>

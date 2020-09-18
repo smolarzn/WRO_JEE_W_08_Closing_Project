@@ -1,4 +1,4 @@
-package pl.coderslab.workshop.model.aircraftProperties;
+package pl.coderslab.workshop.model.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -13,7 +13,7 @@ public class PasswordValidator implements ConstraintValidator<Password, String> 
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value.matches("[[a-z]+[A-Z]+[0-9]+[_!.]+]{5,}");
+        return value.matches("[a-z]{5,20}");
 
     }
 

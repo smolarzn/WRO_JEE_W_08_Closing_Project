@@ -2,19 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link name="f" rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <title>Home</title>
 </head>
 <body>
-<a th:href="@{/register}"><button>Zarejestruj się</button></a>
-<a th:href="@{/login}"><button>Zaloguj się</button></a>
-<a th:href="@{/about}"><button>O aplikacji</button></a>
+<div th:include="/fragments::header"></div>
 
 
-
-<div>
-    <p>Copyright: Natalia Telego</p>
-</div>
+<div><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/></div>
 
 
+<div th:include="/fragments::footer"></div>
 </body>
 </html>

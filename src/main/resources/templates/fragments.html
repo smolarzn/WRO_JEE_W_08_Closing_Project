@@ -8,7 +8,18 @@
 <body>
 <div th:fragment="header">
     <div class="header-container">
-        <h3>Witaj <span sec:authentication="name"></span></h3>
+        <a class="link" th:href="@{/login}">Zaloguj się</a>
+        <a class="link" th:href="@{/register}">Zarejestruj się</a>
+        <a class="link" th:href="@{/about}">O aplikacji</a>
+        <a class="link" th:href="@{/}">Strona główna</a>
+    </div>
+</div>
+<div th:fragment="userHeader">
+    <div class="header-container">
+        <a class="link" th:href="@{/aircraft/list}">Zobacz statki powietrzne</a>
+        <a class="link" th:href="@{/quiz}">Zagraj w quiz</a>
+        <a class="link" th:href="@{/logout}">Wyloguj się</a>
+        <a class="link" th:href="@{/mainPage}">Strona główna</a>
     </div>
 </div>
 

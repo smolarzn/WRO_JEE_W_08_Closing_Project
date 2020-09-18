@@ -14,32 +14,29 @@
     bottom: 0;
     position: fixed;
     width: 100%;
+    display: block;
 }
 
 .header-container {
-    padding: 30px;
-    text-align: match-parent;
-    font-size: large;
+    padding: 40px;
     background: var(--background-color);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     top: 0;
-    position: fixed;
     width: 100%;
+    text-align: center;
 }
 
 .login-container {
     padding: 50px;
     border: solid black 1px;
     width: 400px;
-    margin: 50px;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
     text-align: right;
     background: var(--login-color);
-    display: flex;
 }
 
-.link {
-    color: var(--link-color);
-}
 
 body {
     background: lightyellow;
@@ -55,8 +52,69 @@ img {
 
 .error-message {
     color: var(--error-message-color);
+    font-size: 14px;
+    margin-top: -1px;
 }
 
 .text-font {
     font-family: "DejaVu Serif";
+}
+
+.container {
+    padding: 50px;
+    border: solid black 1px;
+    width: 400px;
+    margin-top: 50px;
+    background: var(--login-color);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+.container-add{
+    padding: 50px;
+    border: solid black 1px;
+    width: 100%;
+    background: var(--login-color);
+    margin: 50px auto 30px;
+    text-align: center;
+    display: block;
+    position: relative;
+}
+.logout-container{
+    padding: 50px;
+    border: solid black 1px;
+    width: 200px;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    background: var(--login-color);
+}
+
+.link {
+    color: var(--link-color);
+    font-size: large;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.link:link {
+    text-decoration: none;
+}
+.link:hover{
+    color: goldenrod;
+}
+.center{
+    text-align: center;
+}
+.container-about{
+    padding: 50px;
+    border: solid black 1px;
+    width: 600px;
+    background: var(--login-color);
+    margin: 50px auto;
+    text-align: center;
+    display: block;
 }

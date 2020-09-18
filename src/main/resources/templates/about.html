@@ -2,10 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link name="f" rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <title>About</title>
 </head>
 <body>
-<a th:href="@{/}"><button>Wróć</button></a>
+<div th:include="/fragments::header"></div>
+<div class="container-about">
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis felis eros, blandit ut dolor ut, aliquet hendrerit purus.
+        Quisque sapien odio, bibendum vitae orci eget, sagittis viverra risus. Nulla et ligula in risus faucibus commodo in sit amet risus.
+        Fusce molestie odio vel lacus tempor dignissim. Ut vitae commodo tellus, at mollis quam. Donec neque metus, rhoncus vitae felis efficitur,
+        convallis tristique nisi. Donec placerat posuere nunc, nec ullamcorper magna hendrerit nec. Proin ac convallis elit. Fusce fringilla augue ligula,
+        id vehicula mauris cursus sed. Proin at augue ultrices, vehicula nisi a, sagittis erat.</p>
 
+    <p> Sed velit nisl, fringilla et lorem nec, scelerisque accumsan urna. Phasellus quis tellus id felis iaculis venenatis.
+        Nunc vehicula congue orci id congue. Etiam non porttitor libero. Vivamus ultricies, urna pharetra faucibus scelerisque,
+        elit dui scelerisque enim, eget tempor urna quam sed purus. Phasellus commodo arcu porttitor, maximus velit at, euismod diam.
+        Cras faucibus sollicitudin neque sit amet molestie. Curabitur eu aliquet metus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        In feugiat sit amet justo a condimentum. Phasellus eu vulputate libero, sit amet aliquet nisl. Morbi condimentum
+        suscipit finibus. Duis volutpat eget
+        libero ut hendrerit. Suspendisse a lobortis nunc. Sed lobortis nisl quis aliquet aliquet. </p>
+</div>
+<div th:include="/fragments::footer"></div>
 </body>
 </html>

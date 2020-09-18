@@ -7,18 +7,26 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.model.Aircraft;
 
-import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final AircraftRepository aircraftRepository;
 
     @GetMapping("/mainPage")
-    public String mainPage() {
+    public String mainPage(Model model) {
+        List<Aircraft> lastAdded = aircraftRepository.lastAdded();
+        Map<String, String> nameAndImage = new HashMap<>();
+        for (Aircraft a : lastAdded) {
+            nameAndImage.put(a.getName(), userService.image(a.getFile()));
+        }
+        model.addAttribute("lastAdded", nameAndImage);
         return "user/mainPage";
     }
 
@@ -26,13 +34,13 @@ public class UserController {
     public String quiz(Model model) {
         Aircraft aircraft = aircraftRepository.findRandom();
         model.addAttribute("aircraft", aircraft.getName());
-        byte[] file = aircraft.getFile();
-        String image = "";
-        if (file != null && file.length > 0) {
-            image = Base64.getMimeEncoder().encodeToString(file);
-        }
-        model.addAttribute("image", image);
-        return "quiz";
+//        byte[] file = aircraft.getFile();
+//        String image = "";
+//        if (file != null && file.length > 0) {
+//            image = Base64.getMimeEncoder().encodeToString(file);
+//        }
+        model.addAttribute("image", userService.image(aircraft.getFile()));
+        return "quiz/quiz";
     }
 
 
@@ -63,4 +71,5 @@ public class UserController {
 //        model.addAttribute("aircraft", aircraftRepository.findAllByAircraftRole(role));
 //        return "listOfAircraft";
 //    }
+
 }
