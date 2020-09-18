@@ -1,0 +1,2 @@
+INSERT INTO project.users (id, email, first_name, last_name, password, enabled) VALUES (1, 'user@gmail.com', 'user', 'user lastName', '$2a$10$D/nDNMEpbYlCps/a47A5u.nPibaGC1/9iW1dFpjBGxf.S4B7nFdgO', 1);
+INSERT INTO project.users (id, email, first_name, last_name, password, enabled) VALUES (2, 'admin@gmail.com', 'admin', 'admin lastName', '$2a$10$hdFs7JPIgUDT20GBGK995.jXjYbzBboacu/KZxPH6KR3lvf5ZqFnm', 1);
