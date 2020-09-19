@@ -39,11 +39,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public String image(byte[] file) {
-        if (file != null && file.length > 0) {
-            return Base64.getMimeEncoder().encodeToString(file);
-        }
-        return null;
-    }
+
 
 }

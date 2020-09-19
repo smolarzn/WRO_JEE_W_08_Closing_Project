@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
+import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
 import pl.coderslab.workshop.model.User;
 
@@ -23,11 +24,12 @@ public class HomeController {
 
     private final UserServiceImpl userService;
     private final AircraftRepository aircraftRepository;
+    private final AircraftService aircraftService;
 
     @GetMapping("/")
     public String home(Model model) {
         Aircraft random = aircraftRepository.findRandom();
-        model.addAttribute("image", userService.image(random.getFile()));
+        model.addAttribute("image", aircraftService.image(random.getFile()));
         return "home";
     }
 

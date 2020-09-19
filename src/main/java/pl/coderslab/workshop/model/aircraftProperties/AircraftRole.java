@@ -17,8 +17,5 @@ public enum AircraftRole {
     SAILPLANE,
     SPECIAL_PURPOSE,
     SPORT,
-    UTILITY,
-
-
-
+    UTILITY;
 }

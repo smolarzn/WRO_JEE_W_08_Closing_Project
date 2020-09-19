@@ -12,9 +12,9 @@
     background: var(--background-color);
     margin-top: 30px;
     bottom: 0;
-    position: fixed;
     width: 100%;
     display: block;
+    position: relative;
 }
 
 .header-container {
@@ -22,8 +22,11 @@
     background: var(--background-color);
     margin-bottom: 40px;
     top: 0;
-    width: 100%;
+    /*width: 100%;*/
     text-align: center;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+
 }
 
 .login-container {
@@ -117,4 +120,25 @@ img {
     margin: 50px auto;
     text-align: center;
     display: block;
+}
+.align-right{
+    text-align: right;
+}
+.name{
+    font-size: 30px;
+    text-align: right;
+}
+.container-list{
+    padding:50px;
+    margin: 50px auto;
+    text-align: center;
+    width: 400px;
+}
+.table-th{
+    font-size: 20px;
+    padding: 10px;
+}
+.container-details{
+    display: block;
+    line-height: 20px;
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
+import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final AircraftService aircraftService;
     private final AircraftRepository aircraftRepository;
 
     @GetMapping("/mainPage")
@@ -24,24 +25,24 @@ public class UserController {
         List<Aircraft> lastAdded = aircraftRepository.lastAdded();
         Map<String, String> nameAndImage = new HashMap<>();
         for (Aircraft a : lastAdded) {
-            nameAndImage.put(a.getName(), userService.image(a.getFile()));
+            nameAndImage.put(a.getName(), aircraftService.image(a.getFile()));
         }
         model.addAttribute("lastAdded", nameAndImage);
         return "user/mainPage";
     }
-
-    @GetMapping("/quiz")
-    public String quiz(Model model) {
-        Aircraft aircraft = aircraftRepository.findRandom();
-        model.addAttribute("aircraft", aircraft.getName());
-//        byte[] file = aircraft.getFile();
-//        String image = "";
-//        if (file != null && file.length > 0) {
-//            image = Base64.getMimeEncoder().encodeToString(file);
-//        }
-        model.addAttribute("image", userService.image(aircraft.getFile()));
-        return "quiz/quiz";
-    }
+//
+//    @GetMapping("/quiz")
+//    public String quiz(Model model) {
+//        Aircraft aircraft = aircraftRepository.findRandom();
+//        model.addAttribute("aircraft", aircraft.getName());
+////        byte[] file = aircraft.getFile();
+////        String image = "";
+////        if (file != null && file.length > 0) {
+////            image = Base64.getMimeEncoder().encodeToString(file);
+////        }
+//        model.addAttribute("image", userService.image(aircraft.getFile()));
+//        return "quiz/quiz";
+//    }
 
 
 //    private final AircraftRepository aircraftRepository;

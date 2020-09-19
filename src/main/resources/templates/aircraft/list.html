@@ -7,19 +7,20 @@
     <title>List of aircraft</title>
 </head>
 <body>
+<div th:include="/fragments::userHeader"></div>
 <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/aircraft/admin/add}">
         <button>Add aircraft</button>
     </a>
 </div>
-<div>
+<div class="container-list">
     <table>
         <thead>
         <div>
             <tr>
-                <th> Name</th>
-                <th> Manufacturer</th>
-                <th> Action</th>
+                <th class="table-th"> Name</th>
+                <th class="table-th"> Manufacturer</th>
+                <th class="table-th"> Action</th>
             </tr>
         </div>
         </thead>
@@ -30,7 +31,7 @@
                 <td><span th:text="${air.manufacturer}"></span></td>
                 <td>
                     <a th:href="@{/aircraft/details(id=${air.id})}">
-                        <button>Details</button>
+                        <button class="text-font link">Details</button>
                     </a>
                 </td>
             </tr>

@@ -8,117 +8,117 @@
     <title>Details</title>
 </head>
 <body>
+<div th:include="/fragments::userHeader"></div>
 <div>
     <table th:object="${aircraft}">
-        <div>
+        <div class="container-details">
             <tr>
-                <td>Name:</td>
-                <td><span th:text="*{name}"/></td>
+                <td><span class="center" th:text="*{name}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Manufacturer:</td>
+                <td class="table-th">Manufacturer:</td>
                 <td><span type="text" th:text="*{manufacturer}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Assignment:</td>
+                <td class="table-th">Assignment:</td>
                 <td><span type="text" th:text="*{assignment}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Role:</td>
+                <td class="table-th">Role:</td>
                 <td><span type="text" th:text="*{aircraftRole}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Body:</td>
+                <td class="table-th">Body:</td>
                 <td><span type="text" th:text="*{body}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Wake turbulence category:</td>
+                <td class="table-th">Wake turbulence category:</td>
                 <td><span type="text" th:text="*{wakeTurbulenceCategory}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Wings:</td>
+                <td class="table-th">Wings:</td>
                 <td><span type="text" th:text="*{wings}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Wings position:</td>
+                <td class="table-th">Wings position:</td>
                 <td><span type="text" th:text="*{wingsPosition}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Tail:</td>
+                <td class="table-th">Tail:</td>
                 <td><span type="text" th:text="*{tail}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Number of engines:</td>
+                <td class="table-th">Number of engines:</td>
                 <td><span type="number" th:text="*{numberOfEngines}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Type of engines:</td>
+                <td class="table-th">Type of engines:</td>
                 <td><span type="text" th:text="*{enginesType}"/></td>
             </tr>
         </div>
         <div> </tr>
             <tr>
-                <td>Engines location:</td>
+                <td class="table-th">Engines location:</td>
                 <td><span type="text" th:text="*{enginesLocation}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Crew:</td>
+                <td class="table-th">Crew:</td>
                 <td><span type="number" th:text="*{crew}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Passengers:</td>
+                <td class="table-th">Passengers:</td>
                 <td><span type="number" th:text="*{passengers}"/></td>
             </tr>
             <tr>
-                <td>Max speed <strong>[km/h]</strong>:</td>
+                <td class="table-th">Max speed <strong>[km/h]</strong>:</td>
                 <td><span type="number" th:text="*{maxSpeed}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Range <strong>[km]</strong>:</td>
+                <td class="table-th">Range <strong>[km]</strong>:</td>
                 <td><span type="number" th:text="*{rangeOfAircraft}"/></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Ceiling <strong>[m]</strong>:</td>
+                <td class="table-th">Ceiling <strong>[m]</strong>:</td>
                 <td><span type="number" th:text="*{ceiling}"></span></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Rate of climb <strong>[ft/m]</strong>:</td>
+                <td class="table-th">Rate of climb <strong>[ft/m]</strong>:</td>
                 <td><span type="number" th:text="*{rateOfClimb}"></span></td>
             </tr>
         </div>
         <div>
             <tr>
-                <td>Image:</td>
+                <td class="table-th">Image:</td>
                 <td>
                     <a th:href="@{/aircraft/image(id=*{id})}">
                         <button>Show Image</button>
@@ -132,27 +132,27 @@
                 <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">
-                        <button>Edytuj</button>
+                        <button class="link text-font">Edytuj</button>
                     </a>
                 </td>
                 </div>
                 <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/admin/delete(id=${aircraft.id})}">
-                        <button>Usuń</button>
+                        <button class="link text-font">Usuń</button>
                     </a>
                 </td>
                 </div>
                 <td>
                     <a th:href="@{/aircraft/list}">
-                        <button>Wróć do listy</button>
+                        <button class="link text-font">Wróć do listy</button>
                     </a>
                 </td>
             </tr>
         </div>
     </table>
 </div>
-<div th:include="/fragments::footer"></div>
+<!--<div th:include="/fragments::footer"></div>-->
 
 </body>
 </html>

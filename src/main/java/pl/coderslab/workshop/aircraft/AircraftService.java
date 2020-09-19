@@ -1,15 +1,26 @@
 package pl.coderslab.workshop.aircraft;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.coderslab.workshop.model.Aircraft;
 
+import java.util.Base64;
+
 @RequiredArgsConstructor
+@Service
 public class AircraftService {
+
     private final AircraftRepository repository;
 
     public Aircraft save(Aircraft aircraft) {
         return repository.save(aircraft);
     }
 
+    public String image(byte[] file) {
+        if (file != null && file.length > 0) {
+            return Base64.getMimeEncoder().encodeToString(file);
+        }
+        return null;
+    }
 
 }

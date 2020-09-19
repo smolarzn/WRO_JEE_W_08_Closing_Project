@@ -13,6 +13,17 @@
 <div class="image">
         <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
 </div>
+<form th:action="@{/quiz(id=${id})}" th:object="${aircraft}" method="post">
+    <td th:each="role : ${role}">
+        <input type="radio" th:field="*{aircraftRole}" th:value="${role}"/>
+        <span th:text="${role}">wings position</span>
+    </td><br>
+    <td th:each="tail : ${tail}">
+        <input type="radio" th:field="*{tail}" th:value="${tail}"/>
+        <span th:text="${tail}">wings position</span>
+    </td>
+    <td><input type="submit"></td>
+</form>
 <!--<div th:each="role : ${aircraftRole}">-->
 <!--    <input type="radio" th:field="*{aircraftRole}" th:value="${role}">-->
 <!--    <span th:text="${role}">aircraftRole</span>-->

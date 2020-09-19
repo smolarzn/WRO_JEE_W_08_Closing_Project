@@ -82,13 +82,13 @@ public class AircraftController {
         return "aircraft/image";
     }
 
-    @GetMapping("admin/add")
+    @GetMapping("/admin/add")
     public String addAircraft(Model model) {
         model.addAttribute("aircraft", new Aircraft());
         return "aircraft/add";
     }
 
-    @PostMapping("admin/add")
+    @PostMapping("/admin/add")
     public String addAircraft(@Valid Aircraft aircraft, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "aircraft/add";
@@ -98,7 +98,7 @@ public class AircraftController {
         return "aircraft/addImage";
     }
 
-    @PostMapping("admin/addImage/{id}")
+    @PostMapping("/admin/addImage/{id}")
     public String adImage(@RequestParam("file") MultipartFile file, @PathVariable("id") Long id) {
         Aircraft aircraft = aircraftRepository.findById(id).get();
         try {
@@ -110,14 +110,14 @@ public class AircraftController {
         return "redirect:/aircraft/list";
     }
 
-    @GetMapping("admin/edit")
+    @GetMapping("/admin/edit")
     public String editAircraft(@RequestParam Long id, Model model) {
         Aircraft aircraft = aircraftRepository.findById(id).get();
         model.addAttribute("aircraft", aircraft);
         return "aircraft/edit";
     }
 
-    @PostMapping("admin/edit")
+    @PostMapping("/admin/edit")
     public String editAircraft(@Valid Aircraft aircraft, BindingResult result) {
         if (result.hasErrors()) {
             return "aircraft/edit";
@@ -126,7 +126,7 @@ public class AircraftController {
         return "aircraft/addImage";
     }
 
-    @GetMapping("admin/delete")
+    @GetMapping("/admin/delete")
     public String deleteAircraft(@RequestParam Long id, Model model) {
         Optional<Aircraft> aircraft = aircraftRepository.findById(id);
         if (aircraft.isPresent()) {
@@ -135,7 +135,7 @@ public class AircraftController {
         return "aircraft/delete";
     }
 
-    @PostMapping("admin/delete")
+    @PostMapping("/admin/delete")
     public String deleteAircraft(@RequestParam Long id) {
         Optional<Aircraft> aircraft = aircraftRepository.findById(id);
         aircraft.ifPresent(aircraftRepository::delete);
