@@ -10,6 +10,18 @@
 <body>
 <div th:include="/fragments::userHeader"></div>
 <div>
+    <div th:if="${image!=null}">
+        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
+        <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
+            <button class="link text-font">zmien</button>
+        </a>
+    </div>
+    <div th:if="${image==null}">
+        <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
+            <button class="link text-font">dodaj zdjęcie</button>
+        </a>
+    </div>
+
     <table th:object="${aircraft}">
         <div class="container-details">
             <tr>
@@ -114,34 +126,25 @@
             <tr>
                 <td class="table-th">Rate of climb <strong>[ft/m]</strong>:</td>
                 <td><span type="number" th:text="*{rateOfClimb}"></span></td>
-            </tr>
-        </div>
-        <div>
-            <tr>
-                <td class="table-th">Image:</td>
-                <td>
-                    <a th:href="@{/aircraft/image(id=*{id})}">
-                        <button>Show Image</button>
-                    </a>
-                </td>
+
             </tr>
         </div>
         <div>
             <tr>
                 <td>Action:</td>
                 <div sec:authorize="hasRole('ADMIN')">
-                <td>
-                    <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">
-                        <button class="link text-font">Edytuj</button>
-                    </a>
-                </td>
+                    <td>
+                        <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">
+                            <button class="link text-font">Edytuj</button>
+                        </a>
+                    </td>
                 </div>
                 <div sec:authorize="hasRole('ADMIN')">
-                <td>
-                    <a th:href="@{/aircraft/admin/delete(id=${aircraft.id})}">
-                        <button class="link text-font">Usuń</button>
-                    </a>
-                </td>
+                    <td>
+                        <a th:href="@{/aircraft/admin/delete(id=${aircraft.id})}">
+                            <button class="link text-font">Usuń</button>
+                        </a>
+                    </td>
                 </div>
                 <td>
                     <a th:href="@{/aircraft/list}">
@@ -151,6 +154,7 @@
             </tr>
         </div>
     </table>
+
 </div>
 <!--<div th:include="/fragments::footer"></div>-->
 

@@ -16,11 +16,13 @@ public class AircraftService {
         return repository.save(aircraft);
     }
 
-    public String image(byte[] file) {
+    public String image(Aircraft aircraft) {
+        byte[] file = aircraft.getFile();
         if (file != null && file.length > 0) {
             return Base64.getMimeEncoder().encodeToString(file);
         }
         return null;
     }
+
 
 }

@@ -7,27 +7,128 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
-<div>
-        <strong class="center" th:text="${aircraft}"></strong>
-</div>
 <div class="image">
-        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
+    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
 </div>
 <form th:action="@{/quiz(id=${id})}" th:object="${aircraft}" method="post">
+    <input type="hidden" th:value="${id}">
+    <label>Name: </label>
+    <td th:each="name : ${name}">
+        <input type="radio" th:field="*{name}" th:value="${name}"/>
+        <span th:text="${name}">name</span>
+    </td>
+    <br>
+    <label>Manufacturer: </label>
+    <td th:each="manu : ${manufacturer}">
+        <input type="radio" th:field="*{manufacturer}" th:value="${manu}"/>
+        <span th:text="${manu}">manufacturer</span>
+    </td>
+    <br>
+    <label>assignment: </label>
+    <td th:each="assign : ${assignment}">
+        <input type="radio" th:field="*{assignment}" th:value="${assign}"/>
+        <span th:text="${assign}">assignment</span>
+    </td>
+    <br>
+    <label>role: </label>
     <td th:each="role : ${role}">
         <input type="radio" th:field="*{aircraftRole}" th:value="${role}"/>
-        <span th:text="${role}">wings position</span>
-    </td><br>
+        <span th:text="${role}">aircraft role</span>
+    </td>
+    <br>
+    <div>
+    <label>body: </label>
+    <td th:each="body : ${body}">
+        <input type="radio" th:field="*{body}" th:value="${body}"/>
+        <span th:text="${body}">body</span>
+    </td>
+    <br>
+    <label>wings: </label>
+    <td th:each="wings : ${wings}">
+        <input type="radio" th:field="*{wings}" th:value="${wings}"/>
+        <span th:text="${wings}">wings </span>
+    </td>
+    <br>
+    <label>wings position: </label>
+    <td th:each="wingsPosition : ${wingsPosition}">
+        <input type="radio" th:field="*{wingsPosition}" th:value="${wingsPosition}"/>
+        <span th:text="${wingsPosition}">wings position</span>
+    </td>
+    <br>
+    <label>tail: </label>
     <td th:each="tail : ${tail}">
         <input type="radio" th:field="*{tail}" th:value="${tail}"/>
-        <span th:text="${tail}">wings position</span>
+        <span th:text="${tail}">tail</span>
     </td>
+    <br>
+    <label>engines type: </label>
+    <td th:each="type : ${enginesType}">
+        <input type="radio" th:field="*{enginesType}" th:value="${type}"/>
+        <span th:text="${type}">engines type</span>
+    </td>
+    <br>
+    <label>engines number: </label>
+    <td th:each="number : ${enginesNumber}">
+        <input type="radio" th:field="*{numberOfEngines}" th:value="${number}"/>
+        <span th:text="${number}">number of engines</span>
+    </td>
+    <br>
+    <label>engines location: </label>
+    <td th:each="location : ${enginesLocation}">
+        <input type="radio" th:field="*{enginesLocation}" th:value="${location}"/>
+        <span th:text="${location}">engines location</span>
+    </td>
+    <br>
+    <label>crew: </label>
+    <td th:each="crew : ${crew}">
+        <input type="radio" th:field="*{crew}" th:value="${crew}"/>
+        <span th:text="${crew}">crew</span>
+    </td>
+    <br>
+    <label>passengers: </label>
+    <td th:each="passen : ${passengers}">
+        <input type="radio" th:field="*{passengers}" th:value="${passen}"/>
+        <span th:text="${passen}">passengers</span>
+    </td>
+    <br>
+    <label>Wake turbulence category: </label>
+    <td th:each="wtc : ${wtc}">
+        <input type="radio" th:field="*{wakeTurbulenceCategory}" th:value="${wtc}"/>
+        <span th:text="${wtc}">wake turbulence category</span>
+    </td>
+    <br>
+        <div th:if="${rateOfClimb} != null">
+    <label>Rate of climb: </label>
+    <td th:each="roc : ${rateOfClimb}">
+        <input type="radio" th:field="*{rateOfClimb}" th:value="${roc}"/>
+        <span th:text="${roc}">rate of climb</span>
+    </td>
+        </div>
+    <br>
+    <label>Range: </label>
+    <td th:each="range : ${range}">
+        <input type="radio" th:field="*{rangeOfAircraft}" th:value="${range}"/>
+        <span th:text="${range}">range of aircraft</span>
+    </td>
+    <br>
+    <label>Max speed: </label>
+    <td th:each="speed : ${maxSpeed}">
+        <input type="radio" th:field="*{maxSpeed}" th:value="${speed}"/>
+        <span th:text="${speed}">max speed</span>
+    </td>
+    <br>
+    <label>Ceiling: </label>
+    <td th:each="ceiling : ${ceiling}">
+
+        <input type="radio" th:field="*{ceiling}" th:value="${ceiling}"/>
+        <span th:text="${ceiling}">ceiling</span>
+    </td>
+    <br>
+
     <td><input type="submit"></td>
 </form>
-<!--<div th:each="role : ${aircraftRole}">-->
-<!--    <input type="radio" th:field="*{aircraftRole}" th:value="${role}">-->
-<!--    <span th:text="${role}">aircraftRole</span>-->
-<!--</div>-->
+
+
 <div th:include="/fragments :: footer"></div>
 </body>
 </html>

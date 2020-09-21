@@ -7,18 +7,18 @@
     <title>Add image</title>
 </head>
 <body>
-<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/admin/addImage/{id}(id=${aircraft.id})}"  >
+<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/admin/addImage(id=${aircraft.id})}"  >
     <table>
         <tr>
             <td>Dodaj/Zmień zdjęcie: </span> </td>
-            <td><input type="file" th:name="file"/></td>
+
+            <td><input type="file" th:name="file" id="files"/></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Dodaj"/></td>
+            <td><input type="submit" value="Dodaj zdjęcie"/></td>
         </tr>
     </table>
-    <a th:href="@{/aircraft/list}"><button>Anuluj</button></a>
 </form>
 
 <div th:include="/fragments::footer"></div>

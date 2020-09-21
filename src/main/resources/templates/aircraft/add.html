@@ -135,8 +135,10 @@
             <div>
                 <tr>
                     <td>Passengers:</td>
-                    <td><input type="number" th:field="*{passengers}"/></td>
-                    <td th:if="${#fields.hasErrors('passengers')}" th:errors="*{passengers}">Passengers Error</td>
+                    <td th:each="passengers : ${passengers}">
+                        <input type="radio" th:field="*{passengers}" th:value="${passengers}"/>
+                        <span th:text="${passengers}">engines type</span>
+                    </td>
                 </tr>
             </div>
             <div>

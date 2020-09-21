@@ -44,8 +44,8 @@ public class Aircraft {
     private String enginesLocation;
     @Positive
     private Integer crew;
-    @Positive
-    private Integer passengers;
+    @Enumerated(value = EnumType.STRING)
+    private Passengers passengers;
     @Positive
     private Integer maxSpeed;
     @Positive
@@ -59,6 +59,8 @@ public class Aircraft {
     private byte[] file;
     private LocalDate created;
     private LocalDate updated;
+//    @OneToMany
+//    private List<Image> images = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

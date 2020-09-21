@@ -20,6 +20,7 @@ import java.util.*;
 public class AircraftController {
 
     private final AircraftRepository aircraftRepository;
+    private final AircraftService aircraftService;
 
     @ModelAttribute(name = "assignment")
     public List<Assignment> assignments() {
@@ -30,34 +31,50 @@ public class AircraftController {
     public List<Body> bodyList() {
         return Arrays.asList(Body.values());
     }
+
     @ModelAttribute(name = "enginesType")
     public List<EnginesType> enginesTypeList() {
         return Arrays.asList(EnginesType.values());
     }
+
     @ModelAttribute(name = "tail")
     public List<Tail> tailList() {
         return Arrays.asList(Tail.values());
     }
+
     @ModelAttribute(name = "WTC")
     public List<WakeTurbulenceCategory> wakeTurbulenceCategoryList() {
         return Arrays.asList(WakeTurbulenceCategory.values());
     }
+
     @ModelAttribute(name = "wings")
     public List<Wings> wingsList() {
         return Arrays.asList(Wings.values());
     }
+
     @ModelAttribute(name = "wingsPosition")
     public List<WingsPosition> wingsPositionList() {
         return Arrays.asList(WingsPosition.values());
     }
+
     @ModelAttribute(name = "aircraftRole")
     public List<AircraftRole> aircraftRoleList() {
         return Arrays.asList(AircraftRole.values());
     }
 
+    @ModelAttribute(name = "passengers")
+    public List<Passengers> passengers() {
+        return Arrays.asList(Passengers.values());
+    }
+
     @GetMapping("/list")
     public String aircraftList(Model model) {
-        model.addAttribute("aircraft", aircraftRepository.findAll());
+        List<Aircraft> allAircraft = aircraftRepository.findAll();
+        Map<Aircraft, String> aircraftImageMap = new HashMap<>();
+        for (Aircraft a : allAircraft) {
+            aircraftImageMap.put(a, aircraftService.image(a));
+        }
+        model.addAttribute("aircraft", aircraftImageMap);
         return "aircraft/list";
     }
 
@@ -65,21 +82,8 @@ public class AircraftController {
     public String detailsOfAircraft(@RequestParam Long id, Model model) {
         Aircraft aircraft = aircraftRepository.findById(id).get();
         model.addAttribute("aircraft", aircraft);
+        model.addAttribute("image", aircraftService.image(aircraft));
         return "aircraft/details";
-    }
-
-    @GetMapping("/image")
-    public String aircraftImage(@RequestParam Long id, Model model) {
-        Aircraft aircraft = aircraftRepository.findById(id).get();
-        model.addAttribute("aircraft", aircraft.getName());
-        model.addAttribute("id", aircraft.getId());
-        byte[] file = aircraft.getFile();
-        String image = "";
-        if (file != null && file.length > 0) {
-            image = Base64.getMimeEncoder().encodeToString(file);
-        }
-        model.addAttribute("image", image);
-        return "aircraft/image";
     }
 
     @GetMapping("/admin/add")
@@ -98,13 +102,25 @@ public class AircraftController {
         return "aircraft/addImage";
     }
 
-    @PostMapping("/admin/addImage/{id}")
-    public String adImage(@RequestParam("file") MultipartFile file, @PathVariable("id") Long id) {
+    @GetMapping("/admin/addImage")
+    public String addImage(@RequestParam Long id, Model model) {
         Aircraft aircraft = aircraftRepository.findById(id).get();
+        model.addAttribute("aircraft", aircraft);
+        return "aircraft/addImage";
+
+    }
+
+    @PostMapping("/admin/addImage")
+    public String adImage(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id) {
+        Aircraft aircraft = aircraftRepository.findById(id).get();
+        byte[] newImage = new byte[0];
         try {
-            aircraft.setFile(file.getBytes());
+            newImage = file.getBytes();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (newImage.length > 0) {
+            aircraft.setFile(newImage);
         }
         aircraftRepository.save(aircraft);
         return "redirect:/aircraft/list";
@@ -123,7 +139,7 @@ public class AircraftController {
             return "aircraft/edit";
         }
         aircraftRepository.save(aircraft);
-        return "aircraft/addImage";
+        return "redirect:/aircraft/list";
     }
 
     @GetMapping("/admin/delete")

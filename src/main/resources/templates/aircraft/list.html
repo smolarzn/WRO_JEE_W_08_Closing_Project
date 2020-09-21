@@ -20,15 +20,18 @@
             <tr>
                 <th class="table-th"> Name</th>
                 <th class="table-th"> Manufacturer</th>
+                <th class="table-th"> Image</th>
                 <th class="table-th"> Action</th>
             </tr>
         </div>
         </thead>
         <tbody>
         <div>
-            <tr th:each="air : ${aircraft}">
+            <tr th:each="air : ${aircraft.keySet()}">
                 <td><span th:text="${air.name}"></span></td>
                 <td><span th:text="${air.manufacturer}"></span></td>
+                <td th:if="${aircraft.get(air)!=null}">    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
+                </td>
                 <td>
                     <a th:href="@{/aircraft/details(id=${air.id})}">
                         <button class="text-font link">Details</button>

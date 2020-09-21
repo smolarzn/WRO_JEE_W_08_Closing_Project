@@ -29,7 +29,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         Aircraft random = aircraftRepository.findRandom();
-        model.addAttribute("image", aircraftService.image(random.getFile()));
+        model.addAttribute("image", aircraftService.image(random));
         return "home";
     }
 
