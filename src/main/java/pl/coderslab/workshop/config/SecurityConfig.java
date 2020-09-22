@@ -28,7 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/aircraft/admin/**").hasRole("ADMIN")
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/mainPage", true)
+                .antMatchers("/aircraft/**", "/user/**", "/quiz/**").hasRole("USER")
+                .antMatchers("/", "/**").permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/user/mainPage", true)
                 .and().logout().logoutSuccessUrl("/")
                 .and().exceptionHandling().accessDeniedPage("/403");
     }

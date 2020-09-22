@@ -10,35 +10,31 @@
 <div th:include="/fragments::userHeader"></div>
 <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/aircraft/admin/add}">
-        <button>Add aircraft</button>
+        <button class="button left">Dodaj statek powietrzny</button>
     </a>
 </div>
-<div class="container-list">
+<div class="list">
     <table>
         <thead>
-        <div>
             <tr>
                 <th class="table-th"> Name</th>
                 <th class="table-th"> Manufacturer</th>
                 <th class="table-th"> Image</th>
                 <th class="table-th"> Action</th>
             </tr>
-        </div>
         </thead>
         <tbody>
-        <div>
             <tr th:each="air : ${aircraft.keySet()}">
-                <td><span th:text="${air.name}"></span></td>
-                <td><span th:text="${air.manufacturer}"></span></td>
-                <td th:if="${aircraft.get(air)!=null}">    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
+                <td><span class="link-color text-size-mid table-space" th:text="${air.name}"></span></td>
+                <td><span  class="table-space" th:text="${air.manufacturer}"></span></td>
+                <td class="table-space" th:if="${aircraft.get(air)!=null}">    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
                 </td>
                 <td>
                     <a th:href="@{/aircraft/details(id=${air.id})}">
-                        <button class="text-font link">Details</button>
+                        <button class="button">Szczegóły</button>
                     </a>
                 </td>
             </tr>
-        </div>
         </tbody>
     </table>
 </div>

@@ -3,31 +3,262 @@
     --background-color: #919764;
     --login-color: #c7c99a;
     --error-message-color: #9c0639;
+    --button-background-color: #cbc683;
+    --button-hoover-active-color: #b3a660;
+    --button-shadow-color: #999;
+    --button-hoover-active-shadow-color: #666;
+    --radio-button-checked-color: #ffa500;
+    --radio-buton-color: #e3b741;
 }
 
-.footer-container {
-    padding: 30px;
-    text-align: center;
-    font-size: large;
-    background: var(--background-color);
-    margin-top: 30px;
+body {
+    background: lightyellow;
+    margin: 0;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px;
+    font-size: 22px;
+    background: var(--background-color);
+
+}
+
+.header {
+    background: var(--background-color);
+    overflow: hidden;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.right {
+    float: right;
+    margin-right: 50px;
+}
+
+.left {
+    float: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.link-color {
+    color: var(--link-color);
+}
+
+.name {
+    font-size: 35px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: var(--link-color);
+    background-color: var(--button-background-color);
+    border-radius: 5px;
+    box-shadow: 0 5px var(--button-shadow-color);
+    margin: 10px;
+    font-family: "DejaVu Serif";
+}
+
+.button:hover {
+    background-color: var(--button-hoover-active-color);
+
+}
+
+.button:active {
+    background-color: var(--button-hoover-active-color);
+    box-shadow: 0 3px var(--button-hoover-active-shadow-color);
+    transform: translateY(4px);
+}
+
+.image-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+.details {
+    padding: 6em;
+    text-align: left;
+    margin: 0em auto 6em;
+}
+
+.details-image {
+    margin-top: 6em;
+    margin-right: 30em;
+}
+
+.delete {
+    padding: 6em;
+    margin: 3em auto;
+    text-align: center;
+    font-size: 22px;
+    width: 600px;
+}
+
+.list {
+    width: 600px;
+    padding: 3em;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 6em;
+    float: left;
+    margin-left: 15em;
+}
+
+.main-aircraft {
+    padding: 0 0 3em;
+    text-align: center;
+    margin: 0 auto 0;
+}
+
+.container-right {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 6em;
+    margin-right: 20em;
+}
+
+.container-left {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 6em;
+    margin-left: 20em;
+}
+
+.text-size-mid {
+    font-size: 25px;
+}
+
+.table-space {
+    padding: 1em;
+}
+
+.quiz-table {
+    margin: 0 auto 3em;
+    padding-bottom: 6em;
+
+}
+
+/*.text-font {*/
+/*    font-family: "DejaVu Serif";*/
+/*}*/
+
+/*.footer-container {*/
+/*    padding: 30px;*/
+/*    text-align: center;*/
+/*    font-size: large;*/
+/*    background: var(--background-color);*/
+/*    margin-top: 30px;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    display: block;*/
+/*    position: relative;*/
+/*}*/
+
+/*.header-container {*/
+/*    position: fixed;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    padding: 40px;*/
+/*    background: var(--background-color);*/
+/*    margin-bottom: 40px;*/
+/*    top: 0;*/
+/*    text-align: center;*/
+
+/*}*/
+/*dodawanie*/
+
+.edit-container {
     display: block;
     position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 19px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.header-container {
-    padding: 40px;
-    background: var(--background-color);
-    margin-bottom: 40px;
+/* Hide the browser's default checkbox */
+.edit-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+    border-radius: 5px;
+    position: absolute;
     top: 0;
-    /*width: 100%;*/
-    text-align: center;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: var(--radio-buton-color);
 }
+
+/* On mouse-over, add a grey background color */
+.edit-container:hover input ~ .checkmark {
+    background-color: var(--button-hoover-active-shadow-color);
+}
+
+/* When the checkbox is checked, add a blue background */
+.edit-container input:checked ~ .checkmark {
+    background-color: var(--radio-button-checked-color);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.edit-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.edit-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.quiz-names {
+    text-align: center;
+    font-size: 22px;
+}
+
+
+
 
 .login-container {
     padding: 50px;
@@ -40,10 +271,6 @@
     background: var(--login-color);
 }
 
-
-body {
-    background: lightyellow;
-}
 
 img {
     border: solid black;
@@ -59,9 +286,6 @@ img {
     margin-top: -1px;
 }
 
-.text-font {
-    font-family: "DejaVu Serif";
-}
 
 .container {
     padding: 50px;
@@ -74,7 +298,8 @@ img {
     text-align: center;
     display: block;
 }
-.container-add{
+
+.container-add {
     padding: 50px;
     border: solid black 1px;
     width: 100%;
@@ -84,7 +309,8 @@ img {
     display: block;
     position: relative;
 }
-.logout-container{
+
+.logout-container {
     padding: 50px;
     border: solid black 1px;
     width: 200px;
@@ -106,13 +332,13 @@ img {
 .link:link {
     text-decoration: none;
 }
-.link:hover{
+
+.link:hover {
     color: goldenrod;
 }
-.center{
-    text-align: center;
-}
-.container-about{
+
+
+.container-about {
     padding: 50px;
     border: solid black 1px;
     width: 600px;
@@ -121,24 +347,14 @@ img {
     text-align: center;
     display: block;
 }
-.align-right{
+
+.align-right {
     text-align: right;
 }
-.name{
-    font-size: 30px;
-    text-align: right;
-}
-.container-list{
-    padding:50px;
-    margin: 50px auto;
-    text-align: center;
-    width: 400px;
-}
-.table-th{
+
+
+.table-th {
     font-size: 20px;
     padding: 10px;
 }
-.container-details{
-    display: block;
-    line-height: 20px;
-}
+

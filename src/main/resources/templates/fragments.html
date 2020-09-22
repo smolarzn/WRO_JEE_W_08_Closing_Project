@@ -7,27 +7,33 @@
 </head>
 <body>
 <div th:fragment="header">
-    <div class="header-container">
+    <div class="header">
+        <div class="text-center">
         <a class="link" th:href="@{/login}">Zaloguj się</a>
         <a class="link" th:href="@{/register}">Zarejestruj się</a>
         <a class="link" th:href="@{/about}">O aplikacji</a>
         <a class="link" th:href="@{/}">Strona główna</a>
+        </div>
     </div>
 </div>
 <div th:fragment="userHeader">
-    <div class="header-container">
-        <a class="link" th:href="@{/aircraft/list}">Zobacz statki powietrzne</a>
-        <a class="link" th:href="@{/quiz}">Zagraj w quiz</a>
-        <a class="link" th:href="@{/logout}">Wyloguj się</a>
-        <a class="link" th:href="@{/mainPage}">Strona główna</a>
-        <span class="link name" sec:authentication="name"></span>
+    <div class="header">
+        <div class="left">
+            <span class="name link-color" sec:authentication="name"></span>
+        </div>
+        <div class="right">
+            <a class="link" th:href="@{/user/mainPage}">Strona główna</a>
+            <a class="link" th:href="@{/aircraft/list}">Zobacz statki powietrzne</a>
+            <a class="link" th:href="@{/quiz}">Zagraj w quiz</a>
+            <a class="link" th:href="@{/logout}">Wyloguj się</a>
+        </div>
     </div>
 </div>
 
 
 <div th:fragment="footer">
-    <div class="footer-container">
-        <h5>Copyright <span class="link">Natalia Telego</span></h5>
+    <div class="footer">
+        <h5>Copyright <span class="link-color">Natalia Telego</span></h5>
     </div>
 </div>
 

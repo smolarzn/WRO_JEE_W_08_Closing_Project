@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
-import pl.coderslab.workshop.model.User;
-
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserController {
 
     private final AircraftService aircraftService;

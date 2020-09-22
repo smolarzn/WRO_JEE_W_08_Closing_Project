@@ -7,20 +7,20 @@
     <title>Delete aircraft</title>
 </head>
 <body>
-<div>
-    <p>Na pewno usunąć statek powietrzny o nazwie: <span th:text="${aircraft.name}">name</span>?</p>
-</div>
-<form th:action="@{/aircraft/admin/delete}" method="post">
-    <input type="hidden" th:value="${aircraft.id}" name="id"/>
-    <div>
-        <button type="submit">Delete</button>
-    </div>
-</form>
-<div>
+<div th:include="fragments::userHeader"></div>
+
+<div class="delete">
+    <p>Na pewno usunąć statek powietrzny o nazwie: <span class="link-color" th:text="${aircraft.name}">name</span>?</p>
+    <form th:action="@{/aircraft/admin/delete}" method="post">
+        <input type="hidden" th:value="${aircraft.id}" name="id"/>
+        <button class="button" type="submit">Usuń</button>
+    </form>
     <a th:href="@{/aircraft/details(id=${aircraft.id})}">
-        <button>Do not delete</button>
+        <button class="button">Nie usuwaj</button>
     </a>
 </div>
+
+
 <div th:include="/fragments::footer"></div>
 
 </body>

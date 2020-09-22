@@ -7,16 +7,31 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
-<h3 class="center">Ostatnio dodane</h3>
-
-<table th:each="name : ${lastAdded.keySet()}">
-    <tr>
-        <th th:text="${name}"></th>
-    </tr>
-    <tr th:each="image : ${lastAdded.get(name)}">
-        <td> <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/></td>
-    </tr>
+<div class="container-right">
+<table th:each="name : ${lastAdded.keySet()}" class="main-aircraft">
+    <div>
+        <tr>
+            <th th:text="${name}" class="link-color"></th>
+        </tr>
+        <tr th:each="image :${lastAdded.get(name)}">
+            <td><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64, '+image}"/></td>
+        </tr>
+    </div>
 </table>
+</div>
+
+<div class="container-left">
+    <table th:each="name : ${lastAdded.keySet()}" class="main-aircraft">
+        <div>
+            <tr>
+                <th th:text="${name}" class="link-color"></th>
+            </tr>
+            <tr th:each="image :${lastAdded.get(name)}">
+                <td><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64, '+image}"/></td>
+            </tr>
+        </div>
+    </table>
+</div>
 <div th:include="/fragments::footer"></div>
 </body>
 </html>
