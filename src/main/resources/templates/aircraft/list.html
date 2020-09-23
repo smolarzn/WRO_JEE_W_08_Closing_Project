@@ -8,9 +8,9 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
-<div sec:authorize="hasRole('ADMIN')">
+<div sec:authorize="hasRole('ADMIN')" class="left">
     <a th:href="@{/aircraft/admin/add}">
-        <button class="button left">Dodaj statek powietrzny</button>
+        <button class="button"><span th:text="#{button.add.aircraft}"></span> </button>
     </a>
 </div>
 <div class="list">
@@ -25,13 +25,13 @@
         </thead>
         <tbody>
             <tr th:each="air : ${aircraft.keySet()}">
-                <td><span class="link-color text-size-mid table-space" th:text="${air.name}"></span></td>
-                <td><span  class="table-space" th:text="${air.manufacturer}"></span></td>
+                <td><b class="link-color text-size-mid table-space" th:text="${air.name}"></b></td>
+                <td><b  class="table-space" th:text="${air.manufacturer}"></b></td>
                 <td class="table-space" th:if="${aircraft.get(air)!=null}">    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
                 </td>
                 <td>
                     <a th:href="@{/aircraft/details(id=${air.id})}">
-                        <button class="button">Szczegóły</button>
+                        <button class="button"><span th:text="#{button.details}"></span> </button>
                     </a>
                 </td>
             </tr>

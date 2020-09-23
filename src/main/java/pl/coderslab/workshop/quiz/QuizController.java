@@ -2,16 +2,19 @@ package pl.coderslab.workshop.quiz;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
+import pl.coderslab.workshop.model.User;
 import pl.coderslab.workshop.model.aircraftProperties.*;
+import pl.coderslab.workshop.users.CurrentUser;
+import pl.coderslab.workshop.users.UserRepository;
 
 import java.util.*;
 
@@ -23,6 +26,7 @@ public class QuizController {
     private final AircraftRepository aircraftRepository;
     private final AircraftService aircraftService;
     private final QuizService quizService;
+    private final UserRepository userRepository;
 
 
     @GetMapping("/quiz")
@@ -71,8 +75,7 @@ public class QuizController {
     }
 
     @PostMapping("/quiz")
-    @ResponseBody
-    public String quizhandle(@RequestParam Long id, Aircraft aircraft) throws NullPointerException {
+    public String quiz(@RequestParam Long id, Aircraft aircraft, @AuthenticationPrincipal CurrentUser currentUser, Model model) throws NullPointerException {
         Aircraft real = aircraftRepository.findById(id).get();
         Map<String, String> wrongAnswers = new HashMap<>();
         if (!real.equals(aircraft)) {
@@ -172,11 +175,28 @@ public class QuizController {
                     wrongAnswers.put("ceiling", real.getCeiling().toString());
                 }
             }
-
-            return wrongAnswers.toString();
         }
+        User user = currentUser.getUser();
+        Set<Aircraft> aircraft1 = user.getAircraft();
 
-
-        return "dobrze :) ";
+                model.addAttribute("wrongAnswers", wrongAnswers);
+        if (wrongAnswers.isEmpty()) {
+            if (!aircraft1.contains(real)) {
+                aircraft1.add(real);
+            }
+        } else {
+            log.info("IS NOT EMPTY");
+            if (aircraft1.contains(real)) {
+                log.info("CONTAINS REAL");
+                aircraft1.remove(real);
+            }
+        }
+        user.setAircraft(aircraft1);
+        userRepository.save(user);
+        Map<String, String> aircrafts = quizService.familiarAircraft(user);
+        if (aircrafts!=null) {
+            model.addAttribute("familiar", aircrafts);
+        }
+        return "quiz/results";
     }
 }

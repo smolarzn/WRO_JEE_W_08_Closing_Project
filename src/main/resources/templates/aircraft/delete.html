@@ -13,10 +13,10 @@
     <p>Na pewno usunąć statek powietrzny o nazwie: <span class="link-color" th:text="${aircraft.name}">name</span>?</p>
     <form th:action="@{/aircraft/admin/delete}" method="post">
         <input type="hidden" th:value="${aircraft.id}" name="id"/>
-        <button class="button" type="submit">Usuń</button>
+        <button class="button" type="submit"><span th:text="#{button.delete}"></span> </button>
     </form>
     <a th:href="@{/aircraft/details(id=${aircraft.id})}">
-        <button class="button">Nie usuwaj</button>
+        <button class="button"><span th:text="#{button.dont.delete}"></span> </button>
     </a>
 </div>
 

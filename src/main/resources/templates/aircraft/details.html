@@ -14,12 +14,12 @@
     <div th:if="${image!=null}">
         <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
         <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
-            <button class="button image-button">Zmień zdjęcie</button>
+            <button class="button image-button"><span th:text="#{button.change.image}"></span> </button>
         </a>
     </div>
     <div th:if="${image==null}">
         <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
-            <button class="button image-button">Dodaj zdjęcie</button>
+            <button class="button image-button"><span th:text="#{button.add.image}"></span> </button>
         </a>
     </div>
 </div>
@@ -137,20 +137,20 @@
             <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">
-                        <button class="button">Edytuj</button>
+                        <button class="button"><span th:text="#{button.edit}"></span> </button>
                     </a>
                 </td>
             </div>
             <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/admin/delete(id=${aircraft.id})}">
-                        <button class="button">Usuń</button>
+                        <button class="button"><span th:text="#{button.delete}"></span> </button>
                     </a>
                 </td>
             </div>
             <td>
                 <a th:href="@{/aircraft/list}">
-                    <button class="button">Wróć do listy</button>
+                    <button class="button"><span th:text="#{button.back}"></span> </button>
                 </a>
             </td>
         </tr>

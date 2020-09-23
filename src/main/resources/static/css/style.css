@@ -111,13 +111,11 @@ body {
 }
 
 .list {
-    width: 600px;
+    /*width: 600px;*/
     padding: 3em;
-    text-align: left;
-    margin-top: 0;
-    margin-bottom: 6em;
-    float: left;
-    margin-left: 15em;
+    /*text-align: left;*/
+    margin: 0 auto 6em;
+    /*float: left;*/
 }
 
 .main-aircraft {
@@ -299,16 +297,7 @@ img {
     display: block;
 }
 
-.container-add {
-    padding: 50px;
-    border: solid black 1px;
-    width: 100%;
-    background: var(--login-color);
-    margin: 50px auto 30px;
-    text-align: center;
-    display: block;
-    position: relative;
-}
+
 
 .logout-container {
     padding: 50px;

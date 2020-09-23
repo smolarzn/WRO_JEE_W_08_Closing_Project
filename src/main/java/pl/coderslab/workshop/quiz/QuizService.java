@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
+import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
+import pl.coderslab.workshop.model.User;
 
 import java.util.*;
 
@@ -15,6 +17,7 @@ import java.util.*;
 public class QuizService {
 
     private final AircraftRepository aircraftRepository;
+    private final AircraftService aircraftService;
 
     protected List<Enum> getParametersToQuiz(Enum parameter, List<Enum> enuList) {
         List<Enum> listToQuiz = new ArrayList<>();
@@ -116,6 +119,16 @@ public class QuizService {
             Collections.shuffle(names);
             model.addAttribute("name", names);
         }
+    }
+
+    protected Map<String, String> familiarAircraft(User user) {
+        Long id = user.getId();
+        List<Aircraft> aircrafts = aircraftRepository.familiarAircraft(id);
+        Map<String, String> familiar = new HashMap<>();
+        for (Aircraft a : aircrafts) {
+            familiar.put(a.getName(), aircraftService.image(a));
+        }
+        return familiar;
     }
 
 

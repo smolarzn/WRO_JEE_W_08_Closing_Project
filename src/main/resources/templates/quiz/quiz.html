@@ -220,6 +220,21 @@
             </div>
         </div>
 
+        <div th:if="${maxSpeed} != null">
+            <div class="container-left">
+                <span class="quiz-names">Maksymalna prędkość</span>
+                <br>
+                <br>
+                <span th:each="max : ${maxSpeed}">
+            <label class="edit-container">
+                <span th:text="${max}">max speed</span>
+                <input type="radio" th:field="*{maxSpeed}" th:value="${max}"/>
+                <span class="checkmark"></span>
+            </label>
+        </span>
+            </div>
+        </div>
+
         <div th:if="${rateOfClimb} != null">
             <div class="container-left">
                 <span class="quiz-names">Prędkość wznoszenia</span>
@@ -270,6 +285,6 @@
 </form>
 
 
-<div th:include="/fragments :: footer"></div>
+<!--<div th:include="/fragments :: footer"></div>-->
 </body>
 </html>

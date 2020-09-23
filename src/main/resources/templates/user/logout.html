@@ -9,11 +9,11 @@
 <div th:include="/fragments::userHeader"></div>
 <div class="logout-container" >
     <form method="post" th:action="@{/logout}" >
-        <input class="text-font" type="submit" value="Wyloguj">
+        <button class="button" type="submit">Wyloguj</button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
     <a th:href="@{/user/mainPage}">
-        <button>Anuluj</button>
+        <button class="button">Anuluj</button>
     </a>
 
 </div>

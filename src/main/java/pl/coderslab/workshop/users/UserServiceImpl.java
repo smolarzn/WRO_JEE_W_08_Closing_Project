@@ -38,6 +38,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email)!=null;
     }
 
+    public String bla(String vla) {
+        return "user service implementation";
+    }
+
 
 
 

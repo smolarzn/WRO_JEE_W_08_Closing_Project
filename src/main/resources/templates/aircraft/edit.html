@@ -9,7 +9,7 @@
 <body>
 <div>
     <a th:href="@{/aircraft/details(id=${aircraft.id})}">
-        <button>Wróć do szczegółów</button>
+        <button><span th:text="#{button.back}"></span> </button>
     </a>
 </div>
 
@@ -174,7 +174,7 @@
             <div>
                 <tr>
                     <td>
-                        <button type="submit">Edytuj</button>
+                        <button type="submit"><span th:text="#{button.edit}"></span> </button>
                     </td>
                 </tr>
             </div>

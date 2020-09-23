@@ -9,8 +9,20 @@
 <div th:include="/fragments::header"></div>
 
 
-<div><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/></div>
-
+<div class="container-left">
+    <img th:src="@{images/kite.png}">
+    <img height="300" width="400" th:src="@{images/laFrance.jpg}">
+    <img height="" th:src="@{images/duzyantek.jpg}">
+</div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/?lang=pl'"><b>PL</b></a>
+</div>
+<div class="container-right">
+    <img th:src="@{images/hotAirBaloon.jpg}">
+    <img th:src="@{images/wrightFlyer.jpg}">
+    <img th:src="@{images/apollo.jpg}">
+</div>
 
 <div th:include="/fragments::footer"></div>
 </body>

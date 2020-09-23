@@ -9,10 +9,10 @@
 <div th:fragment="header">
     <div class="header">
         <div class="text-center">
-        <a class="link" th:href="@{/login}">Zaloguj się</a>
-        <a class="link" th:href="@{/register}">Zarejestruj się</a>
-        <a class="link" th:href="@{/about}">O aplikacji</a>
-        <a class="link" th:href="@{/}">Strona główna</a>
+            <a class="link" th:href="@{/login}"><span th:text="#{link.login}"></span></a>
+            <a class="link" th:href="@{/register}"><span th:text="#{link.register}"></span></a>
+            <a class="link" th:href="@{/about}"><span th:text="#{link.about}"></span></a>
+            <a class="link" th:href="@{/}"><span th:text="#{link.home}"></span></a>
         </div>
     </div>
 </div>
@@ -22,10 +22,10 @@
             <span class="name link-color" sec:authentication="name"></span>
         </div>
         <div class="right">
-            <a class="link" th:href="@{/user/mainPage}">Strona główna</a>
-            <a class="link" th:href="@{/aircraft/list}">Zobacz statki powietrzne</a>
-            <a class="link" th:href="@{/quiz}">Zagraj w quiz</a>
-            <a class="link" th:href="@{/logout}">Wyloguj się</a>
+            <a class="link" th:href="@{/user/mainPage}"><span th:text="#{link.home}"></span> </a>
+            <a class="link" th:href="@{/aircraft/list}"><span th:text="#{link.aircraft.list}"></span> </a>
+            <a class="link" th:href="@{/quiz}"><span th:text="#{link.quiz}"></span> </a>
+            <a class="link" th:href="@{/logout}"><span th:text="#{link.logout}"></span> </a>
         </div>
     </div>
 </div>

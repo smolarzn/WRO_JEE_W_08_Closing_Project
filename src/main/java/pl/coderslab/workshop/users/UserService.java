@@ -7,4 +7,7 @@ public interface UserService {
     User findByFirstName(String name);
 
     User saveUser(User user);
+
+    String bla(String vla);
+
 }

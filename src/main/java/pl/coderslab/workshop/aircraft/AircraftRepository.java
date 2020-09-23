@@ -46,5 +46,12 @@ public interface AircraftRepository extends JpaRepository<Aircraft, Long> {
     @Query(value = "select distinct rate_of_climb from project.aircraft where rate_of_climb is not null and rate_of_climb != ?1 order by rand() limit 3", nativeQuery = true)
     List<Integer> randomRateOfClimb(Integer roc);
 
+    @Query(value = "select * from project.aircraft join project.user_aircraft ua on aircraft.id = ua.aircraft_id where ua.user_id=?1", nativeQuery = true)
+    List<Aircraft> familiarAircraft(Long id);
+
+
+
+
+
 
 }
