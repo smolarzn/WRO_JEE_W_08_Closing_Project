@@ -7,13 +7,17 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/logout?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/logout?lang=pl'"><b>PL</b></a>
+</div>
 <div class="logout-container" >
     <form method="post" th:action="@{/logout}" >
-        <button class="button" type="submit">Wyloguj</button>
+        <button class="button" type="submit" ><span th:text="#{link.logout}"></span></button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
     <a th:href="@{/user/mainPage}">
-        <button class="button">Anuluj</button>
+        <button class="button" ><span th:text="#{button.cancel}"></span></button>
     </a>
 
 </div>

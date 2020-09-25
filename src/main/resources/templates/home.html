@@ -3,27 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <link name="f" rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <script src="javascript/events.js" type="text/javascript"></script>
     <title>Home</title>
 </head>
 <body>
 <div th:include="/fragments::header"></div>
-
-
-<div class="container-left">
-    <img th:src="@{images/kite.png}">
-    <img height="300" width="400" th:src="@{images/laFrance.jpg}">
-    <img height="" th:src="@{images/duzyantek.jpg}">
-</div>
 <div class="right">
     <a class="link" onclick="window.location.href='/?lang=en'"><b>EN</b></a>
     <a class="link" onclick="window.location.href='/?lang=pl'"><b>PL</b></a>
 </div>
-<div class="container-right">
-    <img th:src="@{images/hotAirBaloon.jpg}">
-    <img th:src="@{images/wrightFlyer.jpg}">
-    <img th:src="@{images/apollo.jpg}">
+<div class="container-left-home">
+    <img height="250" width="200" id="sky" th:src="@{images/kite.png}">
+    <img height="300" width="400" th:src="@{images/hotAirBaloon.jpg}">
+    <img height="300" width="400" th:src="@{images/laFrance.jpg}">
+    <img height="300" width="400" th:src="@{images/wrightFlyer.jpg}">
+    <img height="300" width="400" th:src="@{images/duzyantek.jpg}">
+    <img height="300" width="400" th:src="@{images/apollo.jpg}">
 </div>
+<div class="right-home">
+    <p><b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit. Aliquam in turpis eros.
+        Suspendisse quis augue finibus, elementum urna nec, tempus dolor.
+        Pellentesque blandit dolor et gravida volutpat. Nam et lacus est.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis neque arcu,
+        posuere at urna in, maximus fermentum sem. Mauris metus tortor, vestibulum
+        quis ligula a, feugiat rutrum odio. Quisque lectus mauris, facilisis eu velit vel,
+        lacinia sollicitudin neque. Maecenas aliquam leo laoreet scelerisque finibus. </p>
+    <br>
+    <p> Nam ultricies pulvinar efficitur. Sed sed urna condimentum orci aliquet dapibus.
+        Sed varius rhoncus varius. Fusce at felis lorem. Quisque mattis interdum interdum.
+        Praesent odio ligula, feugiat non vehicula porta, auctor vitae massa. Fusce ultricies
+        sagittis sem in iaculis. Vivamus ultricies, magna eu eleifend convallis, tellus purus
+        tempus tellus, et rutrum lectus orci quis est. Integer ac suscipit libero. Quisque
+        sit amet ultricies tortor, ac maximus ante. Aenean commodo in ex non dapibus. Quisque
+        sit amet ligula pharetra, efficitur sapien quis, aliquet odio. Pellentesque sit amet
+        eros convallis, pellentesque mi sed, semper metus. Aliquam erat volutpat. Sed
+        tristique mollis dictum. Nam vitae ipsum pellentesque, ullamcorper ex in, aliquet sapien. </p>
+    <br>
+    <p> Fusce tristique, mauris nec tempus fermentum, arcu sapien rhoncus mauris, eu auctor
+        justo lacus in nulla. Phasellus nunc ipsum, iaculis sit amet maximus commodo, laoreet
+        vitae lorem. Sed bibendum mattis iaculis. Fusce posuere elit in ornare auctor. Nullam
+        cursus fermentum lacus in volutpat. Donec nunc lacus, interdum eget varius sed,
+        laoreet eu risus. Fusce facilisis mauris nec purus egestas porta. Phasellus ipsum
+        dolor, feugiat nec odio sed, facilisis gravida mi. Nunc et ipsum turpis. Vestibulum
+        venenatis suscipit aliquam. Fusce mollis sit amet magna ac efficitur. Suspendisse nec
+        ligula eget velit pulvinar tincidunt. Vivamus volutpat vel ex a pretium. </p>
+    <br>
+    <p> Aenean pulvinar odio in felis pharetra, ac pretium mauris commodo. Donec luctus erat
+        velit, quis blandit magna condimentum et. Mauris tellus quam, viverra eu mattis eget
+        , elementum in nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac ex ornare, tempus
+        dolor ut, facilisis ligula. Curabitur ullamcorper est quis sagittis tempor. Vivamus
+        ex sapien, volutpat non metus eu, sagittis molestie lorem. Morbi scelerisque
+        pellentesque nulla id pulvinar. In volutpat purus urna, sed vulputate metus imperdiet id. </p>
+    <br>
+    <p> Vestibulum lorem sapien, tempor a bibendum at, consectetur eget mauris. Maecenas
+        accumsan tempus felis, vitae aliquam turpis tempus sit amet. Integer ultrices, felis
+        id dictum rhoncus, ligula leo sagittis sem, accumsan finibus arcu diam a velit. Donec
+        maximus dignissim purus non mattis. Quisque egestas odio eget turpis auctor, sed
+        dictum velit lobortis. Suspendisse nec nisl volutpat, hendrerit mi quis, hendrerit ex.
+        Nam gravida accumsan ante sit amet hendrerit. Aliquam fermentum sem eget arcu congue
+        consequat. Maecenas magna velit, lacinia non lectus finibus, malesuada tempus felis. </p>
 
+</div>
 <div th:include="/fragments::footer"></div>
 </body>
 </html>

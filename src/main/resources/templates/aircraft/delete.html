@@ -8,7 +8,10 @@
 </head>
 <body>
 <div th:include="fragments::userHeader"></div>
-
+<div class="right">
+    <a class="link" th:onclick="'window.location.href=\'/aircraft/admin/delete?id=' + ${aircraft.id} + '&lang=en\''"><b>EN</b></a>
+    <a class="link" th:onclick="'window.location.href=\'/aircraft/admin/delete?id=' + ${aircraft.id} + '&lang=pl\''"><b>PL</b></a>
+</div>
 <div class="delete">
     <p>Na pewno usunąć statek powietrzny o nazwie: <span class="link-color" th:text="${aircraft.name}">name</span>?</p>
     <form th:action="@{/aircraft/admin/delete}" method="post">

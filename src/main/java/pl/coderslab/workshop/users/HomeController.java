@@ -52,14 +52,14 @@ public class HomeController {
     @PostMapping("/register")
     public String handleRegister(@Valid User user, BindingResult result, @RequestParam String repass, Model model) {
         if (!user.getPassword().equals(repass)) {
-            model.addAttribute("passError", "powtórz hasło poprawnie");
+            model.addAttribute("passError", "");
             return "user/register";
         }
         if (result.hasErrors()) {
             return "user/register";
         }
         if (userService.emailExists(user.getEmail())) {
-            model.addAttribute("emailError", "użytkownik o tym adresie email już istnieje");
+            model.addAttribute("emailError", "");
             return "user/register";
         }
         userService.saveUser(user);

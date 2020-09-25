@@ -8,28 +8,30 @@
 </head>
 <body>
 <div th:include="fragments::userHeader"></div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/aircraft/admin/add?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/aircraft/admin/add?lang=pl'"><b>PL</b></a>
+</div>
 <div class="left">
     <a th:href="@{/aircraft/list}">
         <button class="button"><span th:text="#{button.back}"></span> </button>
     </a>
 </div>
-
-
 <form th:action="@{/aircraft/admin/add}" th:object="${aircraft}" method="post">
     <div class="details">
-        <div class="container-left">
-            <label class="quiz-names">Name:</label>
+        <div class="quiz-group-left">
+            <label class="quiz-names"><span th:text="#{text.aircraft.name}"></span> </label>
             <input type="text" th:field="*{name}"/><br>
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">Name Error</span>
         </div>
-        <div class="container-right">
-            <label class="quiz-names">Manufacturer:</label>
+        <div class="quiz-group-right">
+            <label class="quiz-names"><span th:text="#{text.aircraft.manufacturer}"></span> </label>
             <input type="text" th:field="*{manufacturer}"/><br>
             <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="error-message">Manufacturer Error</span>
         </div>
 
-        <div class="container-left">
-            <span class="quiz-names">Przeznaczenie</span>
+        <div class="quiz-group-left">
+            <span class="quiz-names"><span th:text="#{text.aircraft.assignment}"></span> </span>
             <br>
             <br>
             <span th:each="assign : ${assignment}">
@@ -40,18 +42,8 @@
                 </label>
             </span>
         </div>
-        <!--            <div>-->
-        <!--                <tr>-->
-        <!--                    <td>Assignment:</td>-->
-        <!--                    <td th:each="assignment : ${assignment}">-->
-        <!--                        <input type="radio" th:field="*{assignment}" th:value="${assignment}">-->
-        <!--                        <span th:text="${assignment}">assignment</span>-->
-        <!--                    </td>-->
-        <!--                </tr>-->
-        <!--            </div>-->
-
-        <div class="container-right">
-            <span class="quiz-names">Typ</span>
+        <div class="quiz-group-right">
+            <span class="quiz-names"><span th:text="#{text.aircraft.role}"></span> </span>
             <br>
             <br>
             <span th:each="role : ${aircraftRole}">
@@ -62,19 +54,9 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Role:</td>-->
-        <!--                <td>-->
-        <!--                    <div th:each="role : ${aircraftRole}">-->
-        <!--                        <input type="radio" th:field="*{aircraftRole}" th:value="${role}">-->
-        <!--                        <span th:text="${role}">aircraftRole</span>-->
-        <!--                    </div>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-left">
-            <span class="quiz-names">Body</span>
+
+        <div class="quiz-group-left">
+            <span class="quiz-names"><span th:text="#{text.aircraft.body}"></span> </span>
             <br>
             <br>
             <span th:each="body : ${body}">
@@ -85,17 +67,9 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Body:</td>-->
-        <!--                <td th:each="body : ${body}">-->
-        <!--                    <input type="radio" th:field="*{body}" th:value="${body}"/>-->
-        <!--                    <span th:text="${body}">body</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-right">
-            <span class="quiz-names">Kategorie w śladzie aerodynamicznym</span>
+
+        <div class="quiz-group-right">
+            <span class="quiz-names"><span th:text="#{text.aircraft.wtc}"></span> </span>
             <br>
             <br>
             <span th:each="wtc : ${WTC}">
@@ -106,17 +80,9 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Wake turbulence category:</td>-->
-        <!--                <td th:each="wtc : ${WTC}">-->
-        <!--                    <input type="radio" th:field="*{wakeTurbulenceCategory}" th:value="${wtc}"/>-->
-        <!--                    <span th:text="${wtc}">wake turbulence category</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-left">
-            <span class="quiz-names">Uskrzydlenie</span>
+
+        <div class="quiz-group-left">
+            <span class="quiz-names" th:text="#{text.aircraft.wings}"></span>
             <br>
             <br>
             <span th:each="wings : ${wings}">
@@ -127,17 +93,9 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Wings:</td>-->
-        <!--                <td th:each="wings : ${wings}">-->
-        <!--                    <input type="radio" th:field="*{wings}" th:value="${wings}"/>-->
-        <!--                    <span th:text="${wings}">wings</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-right">
-            <span class="quiz-names">Ułożenie skrzydeł</span>
+
+        <div class="quiz-group-right">
+            <span class="quiz-names" th:text="#{text.aircraft.wings.position}"></span>
             <br>
             <br>
             <span th:each="position : ${wingsPosition}">
@@ -148,17 +106,9 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Wings position:</td>-->
-        <!--                <td th:each="position : ${wingsPosition}">-->
-        <!--                    <input type="radio" th:field="*{wingsPosition}" th:value="${position}"/>-->
-        <!--                    <span th:text="${position}">wings position</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-left">
-            <span class="quiz-names">Ogon</span>
+
+        <div class="quiz-group-left">
+            <span class="quiz-names" th:text="#{text.aircraft.tail}"></span>
             <br>
             <br>
             <span th:each="tail : ${tail}">
@@ -169,24 +119,14 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Tail:</td>-->
-        <!--                <td>-->
-        <!--                    <div th:each="tail : ${tail}">-->
-        <!--                        <input type="radio" th:field="*{tail}" th:value="${tail}">-->
-        <!--                        <span th:text="${tail}">aircraftRole</span>-->
-        <!--                    </div>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-right">
-            <label class="quiz-names">Number of engines:</label>
+
+        <div class="quiz-group-right">
+            <label class="quiz-names"><span th:text="#{text.aircraft.engines.number}"></span></label>
             <input type="number" th:field="*{numberOfEngines}"/>
             <span th:if="${#fields.hasErrors('numberOfEngines')}" th:errors="*{numberOfEngines}" class="error-message">Number of engines Error</span>
         </div>
-        <div class="container-left">
-            <span class="quiz-names">Typ silnika</span>
+        <div class="quiz-group-left">
+            <span class="quiz-names" th:text="#{text.aircraft.engines.type}"></span>
             <br>
             <br>
             <span th:each="type : ${enginesType}">
@@ -197,29 +137,21 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Type of engines:</td>-->
-        <!--                <td th:each="type : ${enginesType}">-->
-        <!--                    <input type="radio" th:field="*{enginesType}" th:value="${type}"/>-->
-        <!--                    <span th:text="${type}">engines type</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-right">
-            <label class="quiz-names">Engines location:</label>
+
+        <div class="quiz-group-right">
+            <label class="quiz-names"><span th:text="#{text.aircraft.engines.location}"></span> </label>
             <input type="text" th:field="*{enginesLocation}"/>
             <span th:if="${#fields.hasErrors('enginesLocation')}" th:errors="*{enginesLocation}" class="error-message">Engines Location
                     Error
             </span>
         </div>
-        <div class="container-left">
-            <label class="quiz-names">Crew:</label>
+        <div class="quiz-group-left">
+            <label class="quiz-names"><span th:text="#{text.aircraft.crew}"></span> </label>
             <input type="number" th:field="*{crew}"/>
             <span th:if="${#fields.hasErrors('crew')}" th:errors="*{crew}" class="error-message">Crew Error</span>
         </div>
-        <div class="container-right">
-            <span class="quiz-names">Pasażerowie</span>
+        <div class="quiz-group-right">
+            <span class="quiz-names" th:text="#{text.aircraft.passengers}"></span>
             <br>
             <br>
             <span th:each="passen : ${passengers}">
@@ -230,34 +162,26 @@
                 </label>
             </span>
         </div>
-        <!--        <div>-->
-        <!--            <tr>-->
-        <!--                <td>Passengers:</td>-->
-        <!--                <td th:each="passengers : ${passengers}">-->
-        <!--                    <input type="radio" th:field="*{passengers}" th:value="${passengers}"/>-->
-        <!--                    <span th:text="${passengers}">engines type</span>-->
-        <!--                </td>-->
-        <!--            </tr>-->
-        <!--        </div>-->
-        <div class="container-left">
-            <label class="quiz-names">Max speed <strong>[km/h]</strong>:</label>
+
+        <div class="quiz-group-left">
+            <label class="quiz-names"><span th:text="#{text.aircraft.max.speed}"></span> <strong th:text="#{text.aircraft.max.speed.unit}"></strong>:</label>
             <input type="number" th:field="*{maxSpeed}"/>
             <span th:if="${#fields.hasErrors('maxSpeed')}" th:errors="*{maxSpeed}"
                   class="error-message">Max speed Error</span>
         </div>
-        <div class="container-right">
-            <label class="quiz-names">Range <strong>[km]</strong>:</label>
+        <div class="quiz-group-right">
+            <label class="quiz-names"><span th:text="#{text.aircraft.range}"></span> <strong th:text="#{text.aircraft.range.unit}"></strong>:</label>
             <input type="number" th:field="*{rangeOfAircraft}"/>
             <span th:if="${#fields.hasErrors('rangeOfAircraft')}" th:errors="*{rangeOfAircraft}" class="error-message">Range Error</span>
         </div>
-        <div class="container-left">
-            <label class="quiz-names">Ceiling <strong>[m]</strong>:</label>
+        <div class="quiz-group-left">
+            <label class="quiz-names"><span th:text="#{text.aircraft.ceiling}"></span> <strong th:text="#{text.aircraft.ceiling.unit}"></strong>:</label>
             <input type="number" th:field="*{ceiling}"/>
             <span th:if="${#fields.hasErrors('ceiling')}" th:errors="*{ceiling}"
                   class="error-message">Ceiling Error</span>
         </div>
-        <div class="container-right">
-            <label class="quiz-names">Rate of climb <strong>[ft/m]</strong>:</label>
+        <div class="quiz-group-right">
+            <label class="quiz-names"><span th:text="#{text.aircraft.rate.of.climb}"></span> <strong th:text="#{text.aircraft.rate.of.climb.unit}"></strong>:</label>
             <input type="number" th:field="*{rateOfClimb}"/>
             <span th:if="${#fields.hasErrors('rateOfClimb')}" th:errors="*{rateOfClimb}" class="error-message">Rate of climb Error</span>
         </div>

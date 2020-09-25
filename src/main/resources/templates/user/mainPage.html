@@ -7,30 +7,44 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
-<div class="container-right">
-<table th:each="name : ${lastAdded.keySet()}" class="main-aircraft">
-    <div>
-        <tr>
-            <th th:text="${name}" class="link-color"></th>
-        </tr>
-        <tr th:each="image :${lastAdded.get(name)}">
-            <td><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64, '+image}"/></td>
-        </tr>
-    </div>
-</table>
+<div class="right">
+    <a class="link" onclick="window.location.href='/user/mainPage?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/user/mainPage?lang=pl'"><b>PL</b></a>
 </div>
+<div class="main-page">
+    <p class="text-size-mid-minus link-color">Najnowsze artykuły z 'samoloty.pl'</p>
+</div>
+<div class="main-page">
 
-<div class="container-left">
-    <table th:each="name : ${lastAdded.keySet()}" class="main-aircraft">
+    <table>
         <div>
             <tr>
-                <th th:text="${name}" class="link-color"></th>
+                <th th:text="${firstTitle}"></th>
             </tr>
-            <tr th:each="image :${lastAdded.get(name)}">
-                <td><img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64, '+image}"/></td>
+            <tr>
+                <td><span th:text="${firstArticle}"></span></td>
             </tr>
         </div>
     </table>
+    <a th:href="${firstLink}">
+        <button class="button"><span th:text="#{button.more}"></span></button>
+    </a>
+</div>
+
+<div class="main-page">
+    <table>
+        <div>
+            <tr>
+                <th th:text="${secondTitle}"></th>
+            </tr>
+            <tr>
+                <td><span th:text="${secondArticle}"></span></td>
+            </tr>
+        </div>
+    </table>
+    <a th:href="${secondLink}">
+        <button class="button"><span th:text="#{button.more}"></span></button>
+    </a>
 </div>
 <div th:include="/fragments::footer"></div>
 </body>

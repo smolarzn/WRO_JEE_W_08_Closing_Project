@@ -3,19 +3,24 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
-
+    <link name="n" rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <script src="/../javascript/events.js" type="text/javascript"></script>
     <title>Details</title>
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
-
+<div class="right">
+    <a class="link" th:onclick="'window.location.href=\'/aircraft/details?id=' + ${aircraft.id} + '&lang=en\''"><b>EN</b></a>
+    <a class="link" th:onclick="'window.location.href=\'/aircraft/details?id=' + ${aircraft.id} + '&lang=pl\''"><b>PL</b></a>
+</div>
 <div class="right details-image">
     <div th:if="${image!=null}">
-        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+image}"/>
+        <img height="200" width="300" alt="sample" id="image" th:src="*{'data:image/png;base64,'+image}"/>
         <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
             <button class="button image-button"><span th:text="#{button.change.image}"></span> </button>
         </a>
+        <button id="zoomin" class="button"><span th:text="#{button.zoom.in}"></span> </button>
+        <button id="zoomout" class="button"><span th:text="#{button.zoom.out}"></span> </button>
     </div>
     <div th:if="${image==null}">
         <a th:href="@{/aircraft/admin/addImage(id=${aircraft.id})}">
@@ -32,108 +37,108 @@
     </div>
     <div>
         <tr>
-            <td class="table-th">Manufacturer:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.manufacturer}"></span> </td>
             <td><span type="text" th:text="*{manufacturer}"/></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Assignment:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.assignment}"></span> </td>
             <td><span type="text" th:text="*{assignment}"/></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Role:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.role}"></span> </td>
             <td><span type="text" th:text="*{aircraftRole}"/></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Body:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.body}"></span> </td>
             <td><span type="text" th:text="*{body}"/></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Wake turbulence category:</td>
-            <td><span type="text" th:text="*{wakeTurbulenceCategory}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.wtc}"></span> </td>
+            <td><span type="text" th:text="*{wakeTurbulenceCategory}"></span></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Wings:</td>
-            <td><span type="text" th:text="*{wings}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.wings}"></span> </td>
+            <td><span type="text" th:text="*{wings}"></span></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Wings position:</td>
-            <td><span type="text" th:text="*{wingsPosition}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.wings.position}"></span> </td>
+            <td><span type="text" th:text="*{wingsPosition}"></span></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Tail:</td>
-            <td><span type="text" th:text="*{tail}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.tail}"></span> </td>
+            <td><span type="text" th:text="*{tail}"></span></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Number of engines:</td>
-            <td><span type="number" th:text="*{numberOfEngines}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.engines.number}"></span> </td>
+            <td><span type="number" th:text="*{numberOfEngines}"></span></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Type of engines:</td>
-            <td><span type="text" th:text="*{enginesType}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.engines.type}"></span> </td>
+            <td><span type="text" th:text="*{enginesType}"></span></span></td>
         </tr>
     </div>
     <div> </tr>
         <tr>
-            <td class="table-th">Engines location:</td>
-            <td><span type="text" th:text="*{enginesLocation}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.engines.location}"></span> </td>
+            <td><span type="text" th:text="*{enginesLocation}"></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Crew:</td>
-            <td><span type="number" th:text="*{crew}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.crew}"></span> </td>
+            <td><span type="number" th:text="*{crew}"></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Passengers:</td>
-            <td><span type="number" th:text="*{passengers}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.passengers}"></span> </td>
+            <td><span type="number" th:text="*{passengers}"></span></td>
         </tr>
         <tr>
-            <td class="table-th">Max speed <strong>[km/h]</strong>:</td>
-            <td><span type="number" th:text="*{maxSpeed}"/></td>
-        </tr>
-    </div>
-    <div>
-        <tr>
-            <td class="table-th">Range <strong>[km]</strong>:</td>
-            <td><span type="number" th:text="*{rangeOfAircraft}"/></td>
+            <td class="table-th"><span th:text="#{text.aircraft.max.speed}"></span> <strong th:text="#{text.aircraft.max.speed.unit}"></strong>:</td>
+            <td><span type="number" th:text="*{maxSpeed}"></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Ceiling <strong>[m]</strong>:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.range}"></span> <strong th:text="#{text.aircraft.range.unit}"></strong>:</td>
+            <td><span type="number" th:text="*{rangeOfAircraft}"></span></td>
+        </tr>
+    </div>
+    <div>
+        <tr>
+            <td class="table-th"><span th:text="#{text.aircraft.ceiling}"></span><strong>[m]</strong>:</td>
             <td><span type="number" th:text="*{ceiling}"></span></td>
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Rate of climb <strong>[ft/m]</strong>:</td>
+            <td class="table-th"><span th:text="#{text.aircraft.rate.of.climb}"></span><strong>[ft/m]</strong>:</td>
             <td><span type="number" th:text="*{rateOfClimb}"></span></td>
 
         </tr>
     </div>
     <div>
         <tr>
-            <td class="table-th">Action:</td>
+            <td class="table-th" th:text="#{text.aircraft.action}"></td>
             <div sec:authorize="hasRole('ADMIN')">
                 <td>
                     <a th:href="@{/aircraft/admin/edit(id=${aircraft.id})}">

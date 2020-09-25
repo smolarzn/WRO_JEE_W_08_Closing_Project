@@ -1,5 +1,4 @@
 package pl.coderslab.workshop.aircraft;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.workshop.model.Aircraft;
 import pl.coderslab.workshop.model.aircraftProperties.*;
-
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -145,9 +142,7 @@ public class AircraftController {
     @GetMapping("/admin/delete")
     public String deleteAircraft(@RequestParam Long id, Model model) {
         Optional<Aircraft> aircraft = aircraftRepository.findById(id);
-        if (aircraft.isPresent()) {
-            model.addAttribute("aircraft", aircraft.get());
-        }
+        aircraft.ifPresent(value -> model.addAttribute("aircraft", value));
         return "aircraft/delete";
     }
 

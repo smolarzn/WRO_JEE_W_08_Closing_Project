@@ -7,31 +7,35 @@
 </head>
 <body>
 <div th:include="/fragments::header"></div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/register?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/register?lang=pl'"><b>PL</b></a>
+</div>
 <form th:action="@{/register}" method="post" th:object="${user}" class="container">
     <div>
-        <input type="text" th:field="*{firstName}" placeholder="Imię">
+        <input type="text" th:field="*{firstName}" th:placeholder="#{text.user.register.name}">
         <p class="error-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
     </div>
     <div>
-        <input type="text" th:field="*{lastName}" placeholder="Nazwisko">
+        <input type="text" th:field="*{lastName}" th:placeholder="#{text.user.register.last.name}">
         <p class="error-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
     </div>
     <div>
-        <input type="text" th:field="*{email}" placeholder="Email">
+        <input type="text" th:field="*{email}" th:placeholder="#{text.user.register.email}">
         <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-        <p class="error-message" th:text="${emailError}"></p>
+        <p class="error-message" th:if="${emailError}!= null" th:text="#{text.user.register.email.error.message}"></p>
 
     </div>
     <div>
-        <input type="password" th:field="*{password}" placeholder="Hasło">
+        <input type="password" th:field="*{password}" th:placeholder="#{text.user.register.password}">
         <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     </div>
     <div>
-        <input type="password" name="repass" placeholder="Powtórz hasło">
-        <p class="error-message" th:text="${passError}"></p>
+        <input type="password" name="repass" th:placeholder="#{text.user.register.repeat.password}">
+        <p class="error-message" th:if="${passError}!=null" th:text="#{text.user.register.password.error.message}"></p>
     </div>
     <div>
-            <input class="text-font" type="submit" value="submit">
+        <button class="button" type="submit"><span th:text="#{link.register}"></span></button>
     </div>
 </form>
 

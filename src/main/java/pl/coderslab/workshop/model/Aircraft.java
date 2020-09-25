@@ -7,18 +7,22 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "aircraft")
+//@EqualsAndHashCode(of = "id")
 public class Aircraft {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(min = 2, max = 50)
     @NotNull
+    @Column(unique = true)
     private String name;
     @Size(min = 2, max = 50)
     @NotNull
@@ -59,6 +63,8 @@ public class Aircraft {
     private byte[] file;
     private LocalDate created;
     private LocalDate updated;
+    @ManyToMany(mappedBy = "aircraft")
+    private Set<User> users;
 //    @OneToMany
 //    private List<Image> images = new ArrayList<>();
 

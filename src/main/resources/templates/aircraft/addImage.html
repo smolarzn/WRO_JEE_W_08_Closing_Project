@@ -7,18 +7,23 @@
     <title>Add image</title>
 </head>
 <body>
-<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/admin/addImage(id=${aircraft.id})}"  >
-    <table>
-        <tr>
-            <td>Dodaj zdjęcie: </span> </td>
-
-            <td><input type="file" th:name="file" id="files"/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><button type="submit"><span th:text="#{button.add.image}"></span> </button></td>
-        </tr>
-    </table>
+<div th:include="/fragments::userHeader"></div>
+<div class="right">
+    <a class="link"
+       th:onclick="'window.location.href=\'/aircraft/admin/addImage?id=' + ${aircraft.id} + '&lang=en\''"><b>EN</b></a>
+    <a class="link"
+       th:onclick="'window.location.href=\'/aircraft/admin/addImage?id=' + ${aircraft.id} + '&lang=pl\''"><b>PL</b></a>
+</div>
+<form method="post" enctype="multipart/form-data" th:action="@{/aircraft/admin/addImage(id=${aircraft.id})}">
+    <div class="login-container">
+        <span class="quiz-names" th:if="${aircraft.file}!=null" th:text="#{button.change.image}"></span>
+        <span class="quiz-names" th:if="${aircraft.file}==null" th:text="#{button.add.image}"></span>
+        <input type="file" th:name="file" id="files"/>
+        <button type="submit">
+            <span th:if="${aircraft.file}==null" th:text="#{button.add.image}"></span>
+            <span th:if="${aircraft.file}!=null" th:text="#{button.change.image}"></span>
+        </button>
+    </div>
 </form>
 
 <div th:include="/fragments::footer"></div>

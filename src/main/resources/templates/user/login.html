@@ -8,14 +8,20 @@
 </head>
 <body>
 <div th:include="/fragments::header"></div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/login?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/login?lang=pl'"><b>PL</b></a>
+</div>
 <div class="login-container">
     <form method="post" th:action="@{/login}">
-        <label> User Name : <input type="text" name="username"/> </label>
-        <label> Password: <input type="password" name="password"/> </label>
+        <label><span th:text="#{text.user.login.name}"></span> <input type="text" name="username"/> </label><br>
+        <label><span th:text="#{text.user.login.password}"></span><input type="password" name="password"/> </label>
         <div class="error-message" th:if="${(param.error != null)}">
-            Sprwadź poprawność hasła i nazwy
+            <span th:text="#{text.user.login.error}"></span>
         </div>
-        <input class="text-font" type="submit" value="Sign In"/>
+        <br>
+        <br>
+        <button class="button" type="submit"><span th:text="#{button.user.login}"></span> </button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </div>

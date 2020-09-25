@@ -8,33 +8,38 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
+<div class="right">
+    <a class="link" onclick="window.location.href='/aircraft/list?lang=en'"><b>EN</b></a>
+    <a class="link" onclick="window.location.href='/aircraft/list?lang=pl'"><b>PL</b></a>
+</div>
 <div sec:authorize="hasRole('ADMIN')" class="left">
     <a th:href="@{/aircraft/admin/add}">
-        <button class="button"><span th:text="#{button.add.aircraft}"></span> </button>
+        <button class="button"><span th:text="#{button.add.aircraft}"></span></button>
     </a>
 </div>
 <div class="list">
     <table>
         <thead>
-            <tr>
-                <th class="table-th"> Name</th>
-                <th class="table-th"> Manufacturer</th>
-                <th class="table-th"> Image</th>
-                <th class="table-th"> Action</th>
-            </tr>
+        <tr>
+            <th class="table-th"><span th:text="#{text.aircraft.name}"></span> </th>
+            <th class="table-th"><span th:text="#{text.aircraft.manufacturer}"></span> </th>
+            <th class="table-th"><span th:text="#{text.aircraft.image}"></span> </th>
+            <th class="table-th"><span th:text="#{text.aircraft.action}"></span> </th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="air : ${aircraft.keySet()}">
-                <td><b class="link-color text-size-mid table-space" th:text="${air.name}"></b></td>
-                <td><b  class="table-space" th:text="${air.manufacturer}"></b></td>
-                <td class="table-space" th:if="${aircraft.get(air)!=null}">    <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
-                </td>
-                <td>
-                    <a th:href="@{/aircraft/details(id=${air.id})}">
-                        <button class="button"><span th:text="#{button.details}"></span> </button>
-                    </a>
-                </td>
-            </tr>
+        <tr th:each="air : ${aircraft.keySet()}">
+            <td><b class="link-color text-size-mid table-space" th:text="${air.name}"></b></td>
+            <td><b class="table-space" th:text="${air.manufacturer}"></b></td>
+            <td class="table-space" th:if="${aircraft.get(air)!=null}">
+                <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
+            </td>
+            <td>
+                <a th:href="@{/aircraft/details(id=${air.id})}">
+                    <button class="button"><span th:text="#{button.details}"></span></button>
+                </a>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

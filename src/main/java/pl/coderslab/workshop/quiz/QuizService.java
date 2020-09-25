@@ -8,6 +8,7 @@ import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.aircraft.AircraftService;
 import pl.coderslab.workshop.model.Aircraft;
 import pl.coderslab.workshop.model.User;
+import pl.coderslab.workshop.users.UserRepository;
 
 import java.util.*;
 
@@ -18,6 +19,7 @@ public class QuizService {
 
     private final AircraftRepository aircraftRepository;
     private final AircraftService aircraftService;
+    private final UserRepository userRepository;
 
     protected List<Enum> getParametersToQuiz(Enum parameter, List<Enum> enuList) {
         List<Enum> listToQuiz = new ArrayList<>();
@@ -121,7 +123,7 @@ public class QuizService {
         }
     }
 
-    protected Map<String, String> familiarAircraft(User user) {
+    protected Map<String, String> familiarAircraftList(User user) {
         Long id = user.getId();
         List<Aircraft> aircrafts = aircraftRepository.familiarAircraft(id);
         Map<String, String> familiar = new HashMap<>();
@@ -131,5 +133,45 @@ public class QuizService {
         return familiar;
     }
 
+    protected Map<String,String> addToFamiliarAircraftList(User user, Aircraft aircraft) {
+        Set<Aircraft> familiarAircraft = user.getAircraft();
+        log.info("FAMILIAR PRZED ADD - familiar przed add {}", familiarAircraft.size());
+        log.info("NAME AIRCRAFTA TO ADD -name {}",aircraft.getName());
+        for (Aircraft a : familiarAircraft) {
+            if (a.getName().equals(aircraft.getName())) {
+                log.info("W FAMILIAR JEST JUŻ O TAKIM NAME - name {}", a.getName());
+                return familiarAircraftList(user);
+            }
+        }
+        if (user.getAircraft().add(aircraft)) {
+            log.info("NAME AIRCRAFTA TO ADD - NAME {}", aircraft.getName());
+            log.info("POWINNO DODAĆ DO FAMILIAR - familiar po add {}", familiarAircraft.size());
+
+            userRepository.save(user);
+            log.info("czy dodało?? {}", user.getAircraft().size());
+        }
+       return familiarAircraftList(user);
+    }
+
+    protected Map<String,String> removeFromFamiliarAircraftList(User user, Aircraft aircraft) {
+        Set<Aircraft> familiarAircraft = user.getAircraft();
+        log.info("FAMILIAR PRZED REMOVE {}", familiarAircraft.size());
+        log.info("NAME AIRCRAFTA TO REMOVE -name {}",aircraft.getName());
+
+        for (Aircraft a : familiarAircraft) {
+            if (a.getName().equals(aircraft.getName())) {
+                if (user.getAircraft().remove(a)) {
+                    log.info("FAMILIAR PO REMOVE {}", familiarAircraft.size());
+                    userRepository.save(user);
+                    log.info(" dodalo do bazy? {}", user.getAircraft().size());
+
+                    return familiarAircraftList(user);
+                }
+            }
+
+        }
+        log.info("FAMILIAR BEZ REMOVE {} ", familiarAircraft.size());
+        return familiarAircraftList(user);
+    }
 
 }

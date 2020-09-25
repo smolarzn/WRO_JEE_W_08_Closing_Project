@@ -8,21 +8,33 @@
 <body>
 <div th:include="fragments::userHeader"></div>
 
-<div class="details">
-    <table>
-        <th>Wrong parameter:</th>
-        <th>Correct answer:</th>
-        <span th:each="answer : ${wrongAnswers.keySet()}">
-        <td th:text="${answer}"></td>
-        <td th:text="${wrongAnswers.get(answer)}"></td>
-            </span>
-    </table>
+<div th:if="${wrongAnswers}!=null">
+    <div class="wrong-answer-container">
+        <b class="text-size-mid link-color text-center table-space">Niestety, pomyliłeś się</b>
+        <table>
+            <thead>
+            <tr>
+                <th class="table-th table-space">Parameter with wrong value:</th>
+                <th class="table-th table-space">Correct answer:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="answer : ${wrongAnswers.keySet()}">
+                <td class="text-size-mid-minus" th:text="${answer}"></td>
+                <td class="text-size-mid-minus" th:text="${wrongAnswers.get(answer)}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<span th:each="fam : ${familiar.keySet()}">
-    <span th:text="${fam}"></span>
-  <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+familiar.get(fam)}"/>
-</span>
+<div class="list">
+<div th:if="${familiar}!=null">
+    <span th:each="fam : ${familiar.keySet()}">
+        <span th:text="${fam}"></span>
+        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+familiar.get(fam)}"/>
+    </span>
+</div>
+</div>
 
 
 <div th:include="fragments::footer"></div>

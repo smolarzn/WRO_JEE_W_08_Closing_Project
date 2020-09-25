@@ -76,127 +76,117 @@ public class QuizController {
 
     @PostMapping("/quiz")
     public String quiz(@RequestParam Long id, Aircraft aircraft, @AuthenticationPrincipal CurrentUser currentUser, Model model) throws NullPointerException {
-        Aircraft real = aircraftRepository.findById(id).get();
+        User user = currentUser.getUser();
+        Set<Aircraft> userFamiliarAircraftList = user.getAircraft();
+        Aircraft aircraftFromDB = aircraftRepository.findById(id).get();
         Map<String, String> wrongAnswers = new HashMap<>();
-        if (!real.equals(aircraft)) {
-            if (!real.getName().equals(aircraft.getName())) {
-                wrongAnswers.put(real.getName(), "name");
+        if (!aircraftFromDB.equals(aircraft)) {
+            if (!aircraftFromDB.getName().equals(aircraft.getName())) {
+                wrongAnswers.put("Name", aircraftFromDB.getName());
             }
-            if (!real.getManufacturer().equals(aircraft.getManufacturer())) {
-                wrongAnswers.put(real.getManufacturer(), "manufacturer");
+            if (!aircraftFromDB.getManufacturer().equals(aircraft.getManufacturer())) {
+                wrongAnswers.put("Manufacturer", aircraftFromDB.getManufacturer());
             }
             if (aircraft.getAssignment() != null) {
-                if (!real.getAssignment().equals(aircraft.getAssignment())) {
-                    wrongAnswers.put("assignment", real.getAssignment().toString());
+                if (!aircraftFromDB.getAssignment().equals(aircraft.getAssignment())) {
+                    wrongAnswers.put("Assignment", aircraftFromDB.getAssignment().toString());
                 }
             }
             if (aircraft.getAircraftRole() != null) {
-                if (!real.getAircraftRole().equals(aircraft.getAircraftRole())) {
-                    wrongAnswers.put(real.getAircraftRole().toString(), "aircraft role");
+                log.info("role{}", aircraft.getAircraftRole().toString());
+                if (!aircraftFromDB.getAircraftRole().equals(aircraft.getAircraftRole())) {
+                    wrongAnswers.put("Aircraft role", aircraftFromDB.getAircraftRole().toString()
+                    );
                 }
             }
 
             if (aircraft.getBody() != null) {
-                if (!real.getBody().equals(aircraft.getBody())) {
-                    wrongAnswers.put("body", real.getBody().toString());
+                if (!aircraftFromDB.getBody().equals(aircraft.getBody())) {
+                    wrongAnswers.put("Body", aircraftFromDB.getBody().toString());
                 }
             }
             if (aircraft.getWings() != null) {
-                if (!real.getWings().equals(aircraft.getWings())) {
-                    wrongAnswers.put("wings", real.getWings().toString());
+                if (!aircraftFromDB.getWings().equals(aircraft.getWings())) {
+                    wrongAnswers.put("Wings", aircraftFromDB.getWings().toString());
                 }
             }
 
             if (aircraft.getWingsPosition() != null) {
 
-                if (!real.getWingsPosition().equals(aircraft.getWingsPosition())) {
-                    wrongAnswers.put("wings position", real.getWingsPosition().toString());
+                if (!aircraftFromDB.getWingsPosition().equals(aircraft.getWingsPosition())) {
+                    wrongAnswers.put("Wings position", aircraftFromDB.getWingsPosition().toString());
                 }
             }
             if (aircraft.getTail() != null) {
-                if (!real.getTail().equals(aircraft.getTail())) {
-                    wrongAnswers.put("tail", real.getTail().toString());
+                if (!aircraftFromDB.getTail().equals(aircraft.getTail())) {
+                    wrongAnswers.put("Tail", aircraftFromDB.getTail().toString());
                 }
             }
             if (aircraft.getEnginesType() != null) {
-                if (!real.getEnginesType().equals(aircraft.getEnginesType())) {
-                    wrongAnswers.put("engines type", real.getEnginesType().toString());
+                if (!aircraftFromDB.getEnginesType().equals(aircraft.getEnginesType())) {
+                    wrongAnswers.put("Engines type", aircraftFromDB.getEnginesType().toString());
                 }
             }
             if (aircraft.getNumberOfEngines() != null) {
-                if (!real.getNumberOfEngines().equals(aircraft.getNumberOfEngines())) {
-                    wrongAnswers.put("engines numbar", real.getNumberOfEngines().toString());
+                if (!aircraftFromDB.getNumberOfEngines().equals(aircraft.getNumberOfEngines())) {
+                    wrongAnswers.put("Engines quantity", aircraftFromDB.getNumberOfEngines().toString());
                 }
             }
             if (aircraft.getEnginesLocation() != null) {
-                if (!real.getEnginesLocation().equals(aircraft.getEnginesLocation())) {
-                    wrongAnswers.put("engines location", real.getEnginesLocation());
+                if (!aircraftFromDB.getEnginesLocation().equals(aircraft.getEnginesLocation())) {
+                    wrongAnswers.put("Engines location", aircraftFromDB.getEnginesLocation());
                 }
             }
 
             if (aircraft.getCrew() != null) {
 
-                if (!real.getCrew().equals(aircraft.getCrew())) {
-                    wrongAnswers.put("crew", real.getCrew().toString());
+                if (!aircraftFromDB.getCrew().equals(aircraft.getCrew())) {
+                    wrongAnswers.put("Crew", aircraftFromDB.getCrew().toString());
                 }
 
             }
             if (aircraft.getPassengers() != null) {
-                if (!real.getPassengers().equals(aircraft.getPassengers())) {
-                    wrongAnswers.put("passengers", real.getPassengers().toString());
+                if (!aircraftFromDB.getPassengers().equals(aircraft.getPassengers())) {
+                    wrongAnswers.put("Passengers", aircraftFromDB.getPassengers().toString());
                 }
             }
             if (aircraft.getWakeTurbulenceCategory() != null) {
 
-                if (!real.getWakeTurbulenceCategory().equals(aircraft.getWakeTurbulenceCategory())) {
-                    wrongAnswers.put("wake turbulence category", real.getWakeTurbulenceCategory().toString());
+                if (!aircraftFromDB.getWakeTurbulenceCategory().equals(aircraft.getWakeTurbulenceCategory())) {
+                    wrongAnswers.put("Wake turbulence category", aircraftFromDB.getWakeTurbulenceCategory().toString());
                 }
             }
             if (aircraft.getRateOfClimb() != null) {
-                if (!real.getRateOfClimb().equals(aircraft.getRateOfClimb())) {
-                    wrongAnswers.put("rate of climb", real.getRateOfClimb().toString());
+                if (!aircraftFromDB.getRateOfClimb().equals(aircraft.getRateOfClimb())) {
+                    wrongAnswers.put("Rate of climb", aircraftFromDB.getRateOfClimb().toString());
                 }
             }
             if (aircraft.getRangeOfAircraft() != null) {
 
-                if (!real.getRangeOfAircraft().equals(aircraft.getRangeOfAircraft())) {
-                    wrongAnswers.put(real.getRangeOfAircraft().toString(), "range");
+                if (!aircraftFromDB.getRangeOfAircraft().equals(aircraft.getRangeOfAircraft())) {
+                    wrongAnswers.put("Range", aircraftFromDB.getRangeOfAircraft().toString());
                 }
             }
             if (aircraft.getMaxSpeed() != null) {
 
-                if (!real.getMaxSpeed().equals(aircraft.getMaxSpeed())) {
-                    wrongAnswers.put("max speed", real.getMaxSpeed().toString());
+                if (!aircraftFromDB.getMaxSpeed().equals(aircraft.getMaxSpeed())) {
+                    wrongAnswers.put("Max speed", aircraftFromDB.getMaxSpeed().toString());
                 }
             }
             if (aircraft.getCeiling() != null) {
 
-                if (!real.getCeiling().equals(aircraft.getCeiling())) {
-                    wrongAnswers.put("ceiling", real.getCeiling().toString());
+                if (!aircraftFromDB.getCeiling().equals(aircraft.getCeiling())) {
+                    wrongAnswers.put("Ceiling", aircraftFromDB.getCeiling().toString());
                 }
             }
         }
-        User user = currentUser.getUser();
-        Set<Aircraft> aircraft1 = user.getAircraft();
-
-                model.addAttribute("wrongAnswers", wrongAnswers);
         if (wrongAnswers.isEmpty()) {
-            if (!aircraft1.contains(real)) {
-                aircraft1.add(real);
-            }
+            model.addAttribute("familiar", quizService.addToFamiliarAircraftList(user, aircraftFromDB));
         } else {
-            log.info("IS NOT EMPTY");
-            if (aircraft1.contains(real)) {
-                log.info("CONTAINS REAL");
-                aircraft1.remove(real);
-            }
+            model.addAttribute("wrongAnswers", wrongAnswers);
+            model.addAttribute("familiar", quizService.removeFromFamiliarAircraftList(user, aircraftFromDB));
         }
-        user.setAircraft(aircraft1);
-        userRepository.save(user);
-        Map<String, String> aircrafts = quizService.familiarAircraft(user);
-        if (aircrafts!=null) {
-            model.addAttribute("familiar", aircrafts);
-        }
+
         return "quiz/results";
     }
 }

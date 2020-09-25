@@ -19,10 +19,8 @@ public class AircraftService {
     public String image(Aircraft aircraft) {
         byte[] file = aircraft.getFile();
         if (file != null && file.length > 0) {
-            return Base64.getMimeEncoder().encodeToString(file);
+            return Base64.getEncoder().encodeToString(file);
         }
         return null;
     }
-
-
 }
