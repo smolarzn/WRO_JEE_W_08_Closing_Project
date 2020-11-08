@@ -8,10 +8,12 @@
 </head>
 <body>
 <div th:include="/fragments::userHeader"></div>
+
 <div class="right">
     <a class="link" onclick="window.location.href='/quiz?lang=en'"><b>EN</b></a>
     <a class="link" onclick="window.location.href='/quiz?lang=pl'"><b>PL</b></a>
 </div>
+
 <div>
     <img height="200" width="300" alt="sample" id="image" th:src="*{'data:image/png;base64,'+image}"/>
     <button id="zoomin" class="button buttons-quiz"><span th:text="#{button.zoom.in}"></span> </button>
@@ -35,21 +37,6 @@
         </span>
         </div>
 
-        <div class="container-left">
-            <label class="quiz-names"><span th:text="#{text.aircraft.manufacturer}"></span> </label>
-            <br>
-            <br>
-            <span th:each="manu : ${manufacturer}">
-            <label class="edit-container">
-                <span th:text="${manu}">manufacturer</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{manufacturer}" th:value="${manu}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-        </div>
-
         <div th:if="${assignment} != null">
             <div class="container-left">
                 <span class="quiz-names"><span th:text="#{text.aircraft.assignment}"></span> </span>
@@ -59,7 +46,7 @@
             <label class="edit-container">
                 <span th:text="${assign}">assignment</span>
                 <div class="inputs">
-                    <input type="radio" th:field="*{assignment}" th:value="${assign}"/>
+                    <input type="radio" th:field="*{assignment}" th:value="${assign.name()}"/>
                     <span class="checkmark"></span>
                 </div>
             </label>
@@ -76,214 +63,7 @@
             <label class="edit-container">
                 <span th:text="${role}">aircraft role</span>
                 <div class="inputs">
-                    <input type="radio" th:field="*{aircraftRole}" th:value="${role}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-
-        <div th:if="${body} != null">
-            <div class="container-left">
-                <span class="quiz-names"><span th:text="#{text.aircraft.body}"></span> </span>
-                <br>
-                <br>
-                <span th:each="body : ${body}">
-            <label class="edit-container">
-                <span th:text="${body}">body</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{body}" th:value="${body}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-        <div th:if="${wtc} != null">
-            <div class="container-left">
-                <span class="quiz-names"><span th:text="#{text.aircraft.wtc}"></span> </span>
-                <br>
-                <br>
-                <span th:each="wtc : ${wtc}">
-                    <label class="edit-container">
-                        <span th:text="${wtc}">wake turbulence category</span>
-                        <div class="inputs">
-                            <input type="radio" th:field="*{wakeTurbulenceCategory}" th:value="${wtc}"/>
-                            <span class="checkmark"></span>
-                        </div>
-                    </label>
-                </span>
-            </div>
-        </div>
-
-        <div th:if="${wings} != null">
-            <div class="container-left">
-                <span class="quiz-names" th:text="#{text.aircraft.wings}"></span>
-                <br>
-                <br>
-                <span th:each="wings : ${wings}">
-            <label class="edit-container">
-                <span th:text="${wings}">wings</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{wings}" th:value="${wings}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${wingsPosition} != null">
-            <div class="container-left">
-                <span class="quiz-names" th:text="#{text.aircraft.wings.position}"></span>
-                <br>
-                <br>
-                <span th:each="wingsP : ${wingsPosition}">
-            <label class="edit-container">
-                <span th:text="${wingsP}">wings</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{wingsPosition}" th:value="${wingsP}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${tail} != null">
-            <div class="container-left">
-                <span class="quiz-names" th:text="#{text.aircraft.tail}"></span>
-                <br>
-                <br>
-                <span th:each="tail : ${tail}">
-            <label class="edit-container">
-                <span th:text="${tail}">tail</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{tail}" th:value="${tail}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${enginesType} != null">
-            <div class="container-left">
-                <span class="quiz-names" th:text="#{text.aircraft.engines.type}"></span>
-                <br>
-                <br>
-                <span th:each="engineT : ${enginesType}">
-            <label class="edit-container">
-                <span th:text="${engineT}">engines type</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{enginesType}" th:value="${engineT}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${enginesNumber} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.engines.number}"></span></label>
-                <br>
-                <br>
-                <span th:each="engineN : ${enginesNumber}">
-            <label class="edit-container">
-                <span th:text="${engineN}">engines number</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{numberOfEngines}" th:value="${engineN}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${enginesLocation} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.engines.location}"></span> </label>
-                <br>
-                <br>
-                <span th:each="engineL : ${enginesLocation}">
-            <label class="edit-container">
-                <span th:text="${engineL}">engines location</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{enginesLocation}" th:value="${engineL}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${crew} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.crew}"></span> </label>
-                <br>
-                <br>
-                <span th:each="crew : ${crew}">
-            <label class="edit-container">
-                <span th:text="${crew}">crew</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{crew}" th:value="${crew}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${passengers} != null">
-            <div class="container-left">
-                <span class="quiz-names" th:text="#{text.aircraft.passengers}"></span>
-                <br>
-                <br>
-                <span th:each="passen : ${passengers}">
-            <label class="edit-container">
-                <span th:text="${passen}">passengers</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{passengers}" th:value="${passen}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-
-        <div th:if="${maxSpeed} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.max.speed}"></span> <strong
-                        th:text="#{text.aircraft.max.speed.unit}"></strong>:</label>
-                <br>
-                <br>
-                <span th:each="max : ${maxSpeed}">
-            <label class="edit-container">
-                <span th:text="${max}">max speed</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{maxSpeed}" th:value="${max}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
-
-        <div th:if="${rateOfClimb} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.rate.of.climb}"></span> <strong
-                        th:text="#{text.aircraft.rate.of.climb.unit}"></strong>:</label>
-                <br>
-                <br>
-                <span th:each="rtc : ${rateOfClimb}">
-            <label class="edit-container">
-                <span th:text="${rtc}">rate of climb</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{rateOfClimb}" th:value="${rtc}"/>
+                    <input type="radio" th:field="*{aircraftRole}" th:value="${role.name()}"/>
                     <span class="checkmark"></span>
                 </div>
             </label>
@@ -310,23 +90,6 @@
             </div>
         </div>
 
-        <div th:if="${ceiling} != null">
-            <div class="container-left">
-                <label class="quiz-names"><span th:text="#{text.aircraft.ceiling}"></span> <strong
-                        th:text="#{text.aircraft.ceiling.unit}"></strong>:</label>
-                <br>
-                <br>
-                <span th:each="ceiling : ${ceiling}">
-            <label class="edit-container">
-                <span th:text="${ceiling}">ceiling</span>
-                <div class="inputs">
-                    <input type="radio" th:field="*{ceiling}" th:value="${ceiling}"/>
-                    <span class="checkmark"></span>
-                </div>
-            </label>
-        </span>
-            </div>
-        </div>
         <button class="button" type="submit">Zatwierdź</button>
     </div>
 </form>

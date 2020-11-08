@@ -38,6 +38,7 @@ public class UserController {
         model.addAttribute("firstTitle", firstTitle.text());
         String firstHref = firstArticle.select(".btn").attr("href");
         model.addAttribute("firstLink", url + firstHref);
+
         Elements secondArticle = doc.getElementsByClass("items-row cols-1 row-1 row-fluid");
         Element secondTitle = secondArticle.select("h2 > a").first();
         Element secondDescription = secondArticle.select("p").first();
@@ -45,7 +46,6 @@ public class UserController {
         model.addAttribute("secondTitle", secondTitle.text());
         String secondHref = secondArticle.select(".btn").attr("href");
         model.addAttribute("secondLink", url + secondHref);
-
 
         return "user/mainPage";
     }

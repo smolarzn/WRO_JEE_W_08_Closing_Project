@@ -22,7 +22,6 @@
         <thead>
         <tr>
             <th class="table-th"><span th:text="#{text.aircraft.name}"></span> </th>
-            <th class="table-th"><span th:text="#{text.aircraft.manufacturer}"></span> </th>
             <th class="table-th"><span th:text="#{text.aircraft.image}"></span> </th>
             <th class="table-th"><span th:text="#{text.aircraft.action}"></span> </th>
         </tr>
@@ -30,7 +29,6 @@
         <tbody>
         <tr th:each="air : ${aircraft.keySet()}">
             <td><b class="link-color text-size-mid table-space" th:text="${air.name}"></b></td>
-            <td><b class="table-space" th:text="${air.manufacturer}"></b></td>
             <td class="table-space" th:if="${aircraft.get(air)!=null}">
                 <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+aircraft.get(air)}"/>
             </td>

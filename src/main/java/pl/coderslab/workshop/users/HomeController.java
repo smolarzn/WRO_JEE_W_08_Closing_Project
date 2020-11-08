@@ -65,4 +65,5 @@ public class HomeController {
         userService.saveUser(user);
         return "redirect:/login";
     }
+
 }

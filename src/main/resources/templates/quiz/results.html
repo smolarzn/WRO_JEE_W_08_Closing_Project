@@ -7,15 +7,18 @@
 </head>
 <body>
 <div th:include="fragments::userHeader"></div>
-
+<!--<div class="right">-->
+<!--    <a class="link" onclick="window.location.href='/quiz?lang=en'"><b>EN</b></a>-->
+<!--    <a class="link" onclick="window.location.href='/quiz?lang=pl'"><b>PL</b></a>-->
+<!--</div>-->
 <div th:if="${wrongAnswers}!=null">
     <div class="wrong-answer-container">
-        <b class="text-size-mid link-color text-center table-space">Niestety, pomyliłeś się</b>
+        <b class="text-size-mid link-color text-center table-space" th:text="#{text.quiz.mistake.message}"></b>
         <table>
             <thead>
             <tr>
-                <th class="table-th table-space">Parameter with wrong value:</th>
-                <th class="table-th table-space">Correct answer:</th>
+                <th class="table-th table-space" th:text="#{text.quiz.wrong.parameters}"></th>
+                <th class="table-th table-space" th:text="#{text.quiz.correct.parameters}"></th>
             </tr>
             </thead>
             <tbody>
@@ -27,14 +30,20 @@
         </table>
     </div>
 </div>
-<div class="list">
-<div th:if="${familiar}!=null">
-    <span th:each="fam : ${familiar.keySet()}">
-        <span th:text="${fam}"></span>
-        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+familiar.get(fam)}"/>
-    </span>
+<div th:if="${wrongAnswers}==null">
+    <div class="login-container">
+        <b class="text-size-mid link-color text-center table-space" th:text="#{text.quiz.no.wrong.answers}"></b>
+    </div>
 </div>
-</div>
+<!--<div class="results">-->
+<!--<div th:if="${familiar}!=null">-->
+<!--    <b class="text-size-mid link-color text-center table-space" th:text="#{text.quiz.familiar.aircraft}"></b>-->
+<!--    <span th:each="fam : ${familiar.keySet()}">-->
+<!--        <span class="link-color text-size-mid table-space" th:text="${fam}"></span>-->
+<!--        <img height="200" width="300" alt="sample" th:src="*{'data:image/png;base64,'+familiar.get(fam)}"/>-->
+<!--    </span>-->
+<!--</div>-->
+<!--</div>-->
 
 
 <div th:include="fragments::footer"></div>

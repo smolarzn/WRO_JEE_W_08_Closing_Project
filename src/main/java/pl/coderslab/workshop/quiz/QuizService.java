@@ -19,7 +19,6 @@ public class QuizService {
 
     private final AircraftRepository aircraftRepository;
     private final AircraftService aircraftService;
-    private final UserRepository userRepository;
 
     protected List<Enum> getParametersToQuiz(Enum parameter, List<Enum> enuList) {
         List<Enum> listToQuiz = new ArrayList<>();
@@ -35,6 +34,8 @@ public class QuizService {
         }
         if (parameter != null) {
             listToQuiz.add(parameter);
+        } else {
+            return null;
         }
         Collections.shuffle(listToQuiz);
         return listToQuiz;
@@ -49,69 +50,6 @@ public class QuizService {
         }
     }
 
-    protected void randomCeiling(Aircraft a, Model model) {
-        if (a.getCeiling() != null) {
-            List<Integer> ceilings = aircraftRepository.randomCeiling(a.getCeiling());
-            ceilings.add(a.getCeiling());
-            Collections.shuffle(ceilings);
-            model.addAttribute("ceiling", ceilings);
-        }
-    }
-
-    protected void randomCrew(Aircraft a, Model model) {
-        if (a.getCrew() != null) {
-            List<Integer> crew = aircraftRepository.randomCrew(a.getCrew());
-            crew.add(a.getCrew());
-            Collections.shuffle(crew);
-            model.addAttribute("crew", crew);
-        }
-    }
-
-    protected void randomEnginesLocation(Aircraft a, Model model) {
-        if (a.getEnginesLocation() != null) {
-            List<String> enginesLocation = aircraftRepository.randomEnginesLocation(a.getEnginesLocation());
-            enginesLocation.add(a.getEnginesLocation());
-            Collections.shuffle(enginesLocation);
-            model.addAttribute("enginesLocation", enginesLocation);
-        }
-    }
-
-    protected void randomManufacturer(Aircraft a, Model model) {
-        if (a.getManufacturer() != null) {
-            List<String> manufacturers = aircraftRepository.randomManufacturer(a.getManufacturer());
-            manufacturers.add(a.getManufacturer());
-            Collections.shuffle(manufacturers);
-            model.addAttribute("manufacturer", manufacturers);
-        }
-    }
-
-    protected void randomMaxSpeed(Aircraft a, Model model) {
-        if (a.getMaxSpeed() != null) {
-            List<Integer> maxSpeed = aircraftRepository.randomMaxSpeed(a.getMaxSpeed());
-            maxSpeed.add(a.getMaxSpeed());
-            Collections.shuffle(maxSpeed);
-            model.addAttribute("maxSpeed", maxSpeed);
-        }
-    }
-
-    protected void randomEnginesNumber(Aircraft a, Model model) {
-        if (a.getNumberOfEngines() != null) {
-            List<Integer> enginesNumber = aircraftRepository.randomNumberOfEngines(a.getNumberOfEngines());
-            enginesNumber.add(a.getNumberOfEngines());
-            Collections.shuffle(enginesNumber);
-            model.addAttribute("enginesNumber", enginesNumber);
-        }
-
-    }
-
-    protected void randomRateOfClimb(Aircraft real, Model model) {
-        if (real.getRateOfClimb() != null) {
-            List<Integer> rateOfClimb = aircraftRepository.randomRateOfClimb(real.getRateOfClimb());
-            rateOfClimb.add(real.getRateOfClimb());
-            Collections.shuffle(rateOfClimb);
-            model.addAttribute("rateOfClimb", rateOfClimb);
-        }
-    }
 
     protected void randomNames(Aircraft a, Model model) {
         String name = a.getName();
@@ -133,45 +71,73 @@ public class QuizService {
         return familiar;
     }
 
-    protected Map<String,String> addToFamiliarAircraftList(User user, Aircraft aircraft) {
+//    protected Map<String,String> addToFamiliarAircraftList(User user, Aircraft aircraft) {
+//        Set<Aircraft> familiarAircraft = user.getAircraft();
+//        log.info("FAMILIAR PRZED ADD - familiar przed add {}", familiarAircraft.size());
+//        log.info("NAME AIRCRAFTA TO ADD -name {}",aircraft.getName());
+//        for (Aircraft a : familiarAircraft) {
+//            if (a.getName().equals(aircraft.getName())) {
+//                log.info("W FAMILIAR JEST JUŻ O TAKIM NAME - name {}", a.getName());
+//                return familiarAircraftList(user);
+//            }
+//        }
+//        if (user.getAircraft().add(aircraft)) {
+//            log.info("NAME AIRCRAFTA TO ADD - NAME {}", aircraft.getName());
+//            log.info("POWINNO DODAĆ DO FAMILIAR - familiar po add {}", familiarAircraft.size());
+//
+//            userRepository.save(user);
+//            log.info("czy dodało?? {}", user.getAircraft().size());
+//        }
+//       return familiarAircraftList(user);
+//    }
+
+    protected void addToFamiliarAircraftList(User user, Aircraft aircraft) {
         Set<Aircraft> familiarAircraft = user.getAircraft();
         log.info("FAMILIAR PRZED ADD - familiar przed add {}", familiarAircraft.size());
-        log.info("NAME AIRCRAFTA TO ADD -name {}",aircraft.getName());
+        log.info("NAME AIRCRAFTA TO ADD -name {}", aircraft.getName());
         for (Aircraft a : familiarAircraft) {
-            if (a.getName().equals(aircraft.getName())) {
+            if (!a.getName().equals(aircraft.getName())) {
                 log.info("W FAMILIAR JEST JUŻ O TAKIM NAME - name {}", a.getName());
-                return familiarAircraftList(user);
+                aircraftRepository.addToUserAircraft(user.getId(), aircraft.getId());
             }
         }
-        if (user.getAircraft().add(aircraft)) {
-            log.info("NAME AIRCRAFTA TO ADD - NAME {}", aircraft.getName());
-            log.info("POWINNO DODAĆ DO FAMILIAR - familiar po add {}", familiarAircraft.size());
-
-            userRepository.save(user);
-            log.info("czy dodało?? {}", user.getAircraft().size());
-        }
-       return familiarAircraftList(user);
+        log.info("NAME AIRCRAFTA TO ADD - NAME {}", aircraft.getName());
+        log.info("POWINNO DODAĆ DO FAMILIAR - familiar po add {}", user.getAircraft().size());
     }
 
-    protected Map<String,String> removeFromFamiliarAircraftList(User user, Aircraft aircraft) {
+
+    //
+//    protected Map<String,String> removeFromFamiliarAircraftList(User user, Aircraft aircraft) {
+//        Set<Aircraft> familiarAircraft = user.getAircraft();
+//        log.info("FAMILIAR PRZED REMOVE {}", familiarAircraft.size());
+//        log.info("NAME AIRCRAFTA TO REMOVE -name {}",aircraft.getName());
+//
+//        for (Aircraft a : familiarAircraft) {
+//            if (a.getName().equals(aircraft.getName())) {
+//                if (user.getAircraft().remove(a)) {
+//                    log.info("FAMILIAR PO REMOVE {}", familiarAircraft.size());
+//                    userRepository.save(user);
+//                    log.info(" dodalo do bazy? {}", user.getAircraft().size());
+//
+//                    return familiarAircraftList(user);
+//                }
+//            }
+//
+//        }
+//        log.info("FAMILIAR BEZ REMOVE {} ", familiarAircraft.size());
+//        return familiarAircraftList(user);
+//    }
+    protected void removeFromFamiliarAircraftList(User user, Aircraft aircraft) {
         Set<Aircraft> familiarAircraft = user.getAircraft();
         log.info("FAMILIAR PRZED REMOVE {}", familiarAircraft.size());
-        log.info("NAME AIRCRAFTA TO REMOVE -name {}",aircraft.getName());
+        log.info("NAME AIRCRAFTA TO REMOVE -name {}", aircraft.getName());
 
         for (Aircraft a : familiarAircraft) {
             if (a.getName().equals(aircraft.getName())) {
-                if (user.getAircraft().remove(a)) {
-                    log.info("FAMILIAR PO REMOVE {}", familiarAircraft.size());
-                    userRepository.save(user);
-                    log.info(" dodalo do bazy? {}", user.getAircraft().size());
-
-                    return familiarAircraftList(user);
-                }
+                aircraftRepository.removeFromUserAircraft(user.getId(), aircraft.getId());
+                log.info("FAMILIAR PO REMOVE {}", user.getAircraft().size());
             }
-
         }
-        log.info("FAMILIAR BEZ REMOVE {} ", familiarAircraft.size());
-        return familiarAircraftList(user);
     }
 
 }
