@@ -28,7 +28,6 @@ public class User {
     private String email;
     @Column(nullable = false)
     @NotEmpty
-//    @Pattern(regexp = "[a-z]{5,20}")
     private String password;
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
