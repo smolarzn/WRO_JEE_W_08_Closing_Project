@@ -1,4 +1,4 @@
-package pl.coderslab.workshop.model.aircraftProperties;
+package pl.coderslab.workshop.aircraft.aircraftProperties;
 
 public enum AircraftRole {
     FIGHTER("fighter"),

@@ -6,13 +6,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.workshop.aircraft.AircraftRepository;
-import pl.coderslab.workshop.aircraft.AircraftService;
 import java.io.IOException;
 
 
@@ -21,8 +17,6 @@ import java.io.IOException;
 @RequestMapping("/user")
 public class UserController {
 
-    private final AircraftService aircraftService;
-    private final AircraftRepository aircraftRepository;
     private final String url = "https://www.samoloty.pl";
 
     @GetMapping("/mainPage")
@@ -50,10 +44,4 @@ public class UserController {
         return "user/mainPage";
     }
 
-    @GetMapping("/changeData")
-    @ResponseBody
-    public String changeData(@AuthenticationPrincipal UserDetails customUser){
-
-        return "logged as " + customUser;
-    }
 }

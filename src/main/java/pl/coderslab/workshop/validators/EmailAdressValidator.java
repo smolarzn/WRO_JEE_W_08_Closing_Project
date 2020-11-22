@@ -1,4 +1,4 @@
-package pl.coderslab.workshop.model.validators;
+package pl.coderslab.workshop.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

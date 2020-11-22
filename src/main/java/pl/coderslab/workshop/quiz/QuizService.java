@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.aircraft.AircraftService;
-import pl.coderslab.workshop.model.Aircraft;
-import pl.coderslab.workshop.model.User;
-import pl.coderslab.workshop.users.UserRepository;
+import pl.coderslab.workshop.aircraft.Aircraft;
+import pl.coderslab.workshop.users.User;
 
 import java.util.*;
 

@@ -2,7 +2,6 @@ package pl.coderslab.workshop.aircraft;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.coderslab.workshop.model.Aircraft;
 
 import java.util.Base64;
 

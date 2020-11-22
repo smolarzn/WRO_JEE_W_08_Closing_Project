@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.workshop.aircraft.AircraftRepository;
 import pl.coderslab.workshop.aircraft.AircraftService;
-import pl.coderslab.workshop.model.Aircraft;
-import pl.coderslab.workshop.model.User;
-import pl.coderslab.workshop.model.aircraftProperties.*;
+import pl.coderslab.workshop.aircraft.Aircraft;
+import pl.coderslab.workshop.users.User;
+import pl.coderslab.workshop.aircraft.aircraftProperties.*;
 import pl.coderslab.workshop.users.CurrentUser;
 import pl.coderslab.workshop.users.UserRepository;
 
+import javax.mail.MessagingException;
 import java.util.*;
 
 @Controller
@@ -39,11 +40,12 @@ public class QuizController {
         quizService.randomRange(aircraft, model);
         model.addAttribute("image", aircraftService.image(aircraft));
         model.addAttribute("aircraft", new Aircraft());
+
         return "quiz/quiz";
     }
 
     @PostMapping("/quiz")
-    public String quiz(@RequestParam Long id, Aircraft aircraft, @AuthenticationPrincipal CurrentUser currentUser, Model model) throws NullPointerException {
+    public String quiz(@RequestParam Long id, Aircraft aircraft, @AuthenticationPrincipal CurrentUser currentUser, Model model) throws NullPointerException, MessagingException {
         User user = currentUser.getUser();
         Aircraft aircraftFromDB = aircraftRepository.findById(id).get();
         Map<String, String> wrongAnswers = new HashMap<>();
