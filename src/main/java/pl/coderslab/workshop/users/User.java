@@ -1,19 +1,19 @@
-package pl.coderslab.workshop.model;
+package pl.coderslab.workshop.users;
 
 import lombok.*;
-import pl.coderslab.workshop.model.validators.EmailAdress;
-import pl.coderslab.workshop.model.validators.Password;
+import pl.coderslab.workshop.aircraft.Aircraft;
+import pl.coderslab.workshop.roles.Role;
+import pl.coderslab.workshop.validators.EmailAdress;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
 @Data
 @Table(name = "users")
 @NoArgsConstructor
-//@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,6 @@ public class User {
     private String email;
     @Column(nullable = false)
     @NotEmpty
-//    @Pattern(regexp = "[a-z]{5,20}")
     private String password;
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

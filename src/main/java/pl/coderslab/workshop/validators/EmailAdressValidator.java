@@ -1,11 +1,11 @@
-package pl.coderslab.workshop.model.validators;
+package pl.coderslab.workshop.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailAdressValidator implements ConstraintValidator<EmailAdress, String> {
+public class  EmailAdressValidator implements ConstraintValidator<EmailAdress, String> {
 
     private final Pattern pattern = Pattern.compile("[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.([a-zA-Z]{2,}){1}");
 

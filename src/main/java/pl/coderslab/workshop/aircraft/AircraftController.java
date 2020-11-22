@@ -5,8 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pl.coderslab.workshop.model.Aircraft;
-import pl.coderslab.workshop.model.aircraftProperties.*;
+import pl.coderslab.workshop.aircraft.aircraftProperties.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
@@ -24,44 +23,9 @@ public class AircraftController {
         return Arrays.asList(Assignment.values());
     }
 
-    @ModelAttribute(name = "body")
-    public List<Body> bodyList() {
-        return Arrays.asList(Body.values());
-    }
-
-    @ModelAttribute(name = "enginesType")
-    public List<EnginesType> enginesTypeList() {
-        return Arrays.asList(EnginesType.values());
-    }
-
-    @ModelAttribute(name = "tail")
-    public List<Tail> tailList() {
-        return Arrays.asList(Tail.values());
-    }
-
-    @ModelAttribute(name = "WTC")
-    public List<WakeTurbulenceCategory> wakeTurbulenceCategoryList() {
-        return Arrays.asList(WakeTurbulenceCategory.values());
-    }
-
-    @ModelAttribute(name = "wings")
-    public List<Wings> wingsList() {
-        return Arrays.asList(Wings.values());
-    }
-
-    @ModelAttribute(name = "wingsPosition")
-    public List<WingsPosition> wingsPositionList() {
-        return Arrays.asList(WingsPosition.values());
-    }
-
     @ModelAttribute(name = "aircraftRole")
     public List<AircraftRole> aircraftRoleList() {
         return Arrays.asList(AircraftRole.values());
-    }
-
-    @ModelAttribute(name = "passengers")
-    public List<Passengers> passengers() {
-        return Arrays.asList(Passengers.values());
     }
 
     @GetMapping("/list")
@@ -94,6 +58,9 @@ public class AircraftController {
         if (result.hasErrors()) {
             return "aircraft/add";
         }
+//        if (aircraft.getEnginesLocation().equals("")) {
+//            aircraft.setEnginesLocation(null);
+//        }
         aircraftRepository.save(aircraft);
         model.addAttribute("aircraft", aircraft);
         return "aircraft/addImage";
@@ -130,8 +97,8 @@ public class AircraftController {
         return "aircraft/edit";
     }
 
-    @PostMapping("/admin/edit")
-    public String editAircraft(@Valid Aircraft aircraft, BindingResult result) {
+    @RequestMapping(value = "/admin/edit", method = RequestMethod.POST)
+    public String editAircraft(@Valid @ModelAttribute Aircraft aircraft, BindingResult result) {
         if (result.hasErrors()) {
             return "aircraft/edit";
         }

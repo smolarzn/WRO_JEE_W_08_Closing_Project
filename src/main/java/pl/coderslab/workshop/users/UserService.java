@@ -1,6 +1,6 @@
 package pl.coderslab.workshop.users;
 
-import pl.coderslab.workshop.model.User;
+import pl.coderslab.workshop.varificationToken.VerificationToken;
 
 public interface UserService {
 
@@ -8,6 +8,11 @@ public interface UserService {
 
     User saveUser(User user);
 
-    String bla(String vla);
+    void createVerificationTokenForUser(User user, String token);
+
+    User findById(Long id);
+
+
+    String validateVerificationToken(String token);
 
 }
