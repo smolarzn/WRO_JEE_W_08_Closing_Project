@@ -21,10 +21,6 @@ chosen for an aircraft drown from a database.
 ##### Administrator
 * aircraft management
 
-## Status
-
-_In progress_
-
 ## Contact
 
 04650nat@gmail.com \
